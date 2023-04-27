@@ -2,7 +2,7 @@ from django.db import models
 
 
 # Create your models here.
-class TimeStamped(models.Model):
+class TimeStampedModel(models.Model):
 
     """Time Stamped Model"""
 
