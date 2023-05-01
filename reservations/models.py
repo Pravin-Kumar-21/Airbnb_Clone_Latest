@@ -1,3 +1,4 @@
+# Create your models here.
 from django.db import models
 from core import models as core_models
 
@@ -7,11 +8,11 @@ class Reservation(core_models.TimeStampedModel):
 
     STATUS_PENDING = "pending"
     STATUS_CONFIRMED = "confirmed"
-    STATUS_CANCELED = "canceled"
+    STATUS_CANCELED = "cancelled"
 
     STATUS_CHOICES = (
         (STATUS_PENDING, "Pending"),
-        (STATUS_CONFIRMED, "Cofnirmed"),
+        (STATUS_CONFIRMED, "Confirmed"),
         (STATUS_CANCELED, "Cancelled"),
     )
 
@@ -25,6 +26,3 @@ class Reservation(core_models.TimeStampedModel):
 
     def __str__(self):
         return f"{self.room} - {self.check_in}"
-
-
-# Create your models here.
