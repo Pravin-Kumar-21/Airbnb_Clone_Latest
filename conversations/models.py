@@ -16,4 +16,4 @@ class Message(core_models.TimeStampedModel):
     conversation = models.ForeignKey("Conversation", on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.user} says {self.text}"  # type: ignore
+        return f"{self.user} says: {self.text}"  # type: ignore
