@@ -74,6 +74,7 @@ class RoomAdmin(admin.ModelAdmin):
         "check_out",
         "instant_book",
         "room_type",
+        "count_amenities",
     )
     list_filter = (
         "instant_book",
@@ -90,6 +91,9 @@ class RoomAdmin(admin.ModelAdmin):
         "facilities",
         "house_rules",
     )
+
+    def count_amenities(self, obj):
+        return obj.amenities.count()
 
 
 @admin.register(models.Photo)
