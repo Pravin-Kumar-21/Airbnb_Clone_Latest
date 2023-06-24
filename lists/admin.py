@@ -13,3 +13,4 @@ class ListAdmin(admin.ModelAdmin):
         "count_rooms",
     )
     search_fields = ("name",)
+    filter_horizontal = ("rooms",)
