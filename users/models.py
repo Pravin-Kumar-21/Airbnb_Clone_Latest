@@ -16,11 +16,29 @@ class User(AbstractUser):
     )
     LANGUAGE_ENGLISH = "en"
     LANGUAGE_KOREAN = "kr"
-    LANGUAGE_CHOICES = ((LANGUAGE_ENGLISH, "English"), (LANGUAGE_KOREAN, "Korean"))
+    LANGUAGE_SPANISH = "es"
+    LANGUAGE_FRENCH = "fr"
+    LANGUAGE_GERMAN = "de"
+    LANGUAGE_CHOICES = (
+        (LANGUAGE_ENGLISH, "English"),
+        (LANGUAGE_KOREAN, "Korean"),
+        (LANGUAGE_SPANISH, "Spanish"),
+        (LANGUAGE_FRENCH, "French"),
+        (LANGUAGE_GERMAN, "German"),
+    )
 
+    CURRENCY_IND = "inr"
     CURRENCY_USD = "usd"
     CURRENCY_KRW = "kre"
-    CURRENCY_CHOICES = ((CURRENCY_USD, "USD"), (CURRENCY_KRW, "KRW"))
+    CURRENCY_EUR = "eur"
+    CURRENCY_ESP = "esp"
+    CURRENCY_CHOICES = (
+        (CURRENCY_USD, "USD"),
+        (CURRENCY_KRW, "KRW"),
+        (CURRENCY_IND, "INR"),
+        (CURRENCY_EUR, "EUR"),
+        (CURRENCY_ESP, "ESP"),
+    )
     avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(
         choices=GENDER_CHOICES,
