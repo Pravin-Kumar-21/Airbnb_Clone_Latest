@@ -98,11 +98,11 @@ class RoomAdmin(admin.ModelAdmin):
     )
     list_filter = (
         "instant_book",
-        "city",
         "room_type",
         "amenities",
         "facilities",
         "house_rules",
+        "city",
         "country",
     )
     search_fields = ("=city", "^host__username")
