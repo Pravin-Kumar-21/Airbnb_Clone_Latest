@@ -19,7 +19,7 @@ class Command(BaseCommand):
         seeder = Seed.seeder()
         all_user = (
             user_models.User.objects.all()
-        )  # this method is not best practice only when  the databases are reallly large a good developer should avoid it
+        )  # this method is not best practice only when the databases are reallly big good developer should avoid it
         room_types = room_models.RoomType.objects.all()
         seeder.add_entity(
             room_models.Room,
