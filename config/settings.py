@@ -134,3 +134,10 @@ AUTH_USER_MODEL = "users.User"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
+
+# Email Configuration
+EMAIL_HOST = "smtp-relay.brevo.com"
+EMAIL_PORT = "587"
+EMAIL_HOST_USER = os.environ.get("BREVO_USERNAME")
+EMAIL_HOST_PASSWORD = os.environ.get("BREVO_PASSWORD")
+EMAIL_FROM = "airbnb.clone.pravin@gmail.com"
