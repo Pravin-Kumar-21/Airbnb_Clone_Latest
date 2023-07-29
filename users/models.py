@@ -2,6 +2,7 @@ from django.contrib.auth.models import AbstractUser
 from django.db import models
 import uuid
 from django.conf import settings
+from django.utils.translation import gettext_lazy as _
 from django.core.mail import send_mail
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
@@ -51,6 +52,9 @@ class User(AbstractUser):
         (LOGIN_EMAIL, "Email"),
         (LOGIN_GITHUB, "Github"),
         (LOGIN_GOOGLE, "Google"),
+    )
+    first_name = models.CharField(
+        _("first name"), max_length=30, blank=True, default=""
     )
     avatar = models.ImageField(upload_to="avatars", blank=True)
     gender = models.CharField(

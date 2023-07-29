@@ -27,7 +27,10 @@ class CustomUserAdmin(UserAdmin):
             },
         ),
     )  # type: ignore
-    list_filter = UserAdmin.list_filter + ("superhost",)  # type: ignore
+    list_filter = UserAdmin.list_filter + (
+        "superhost",
+        "login_method",
+    )  # type: ignore
     list_display = (
         "username",
         "first_name",
