@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 import os
 import requests
 from django.contrib import messages
+import json
 
 
 class LoginView(FormView):
@@ -101,9 +102,6 @@ def github_callback(request):
                     name = profile_json.get("name")
                     email = profile_json.get("email")
                     bio = profile_json.get("bio")
-                    print(name)
-                    print(email)
-                    print(bio)
                     try:
                         user = models.User.objects.get(email=email)
                         if user.login_method != models.User.LOGIN_GITHUB:
@@ -127,3 +125,80 @@ def github_callback(request):
     except GithubException as e:
         messages.error(request, e)
         return redirect(reverse("users:login"))
+
+
+def google_login(request):
+    # Redirect the user to Google's authentication page
+    scope = "https://www.googleapis.com/auth/userinfo.profile"
+    # redirect_uri = ("http://127.0.0.1:8000/users/google/callback/")
+    redirect_uri = request.build_absolute_uri("/users/accounts/google/login/callback/")
+    client_id = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
+    auth_url = f"https://accounts.google.com/o/oauth2/auth?scope={scope}&response_type=code&client_id={client_id}&redirect_uri={redirect_uri}"
+    return redirect(auth_url)
+
+
+def google_callback(request):
+    try:
+        code = request.GET.get("code")
+        redirect_uri = request.build_absolute_uri(
+            "/users/accounts/google/login/callback/"
+        )
+        client_id = os.environ.get("GOOGLE_OAUTH_CLIENT_ID")
+        client_secret = os.environ.get("GOOGLE_OAUTH_CLIENT_SECRET")
+
+        # Exchange the authorization code for an access token
+        token_url = "https://oauth2.googleapis.com/token"
+        data = {
+            "code": code,
+            "client_id": client_id,
+            "client_secret": client_secret,
+            "redirect_uri": redirect_uri,
+            "grant_type": "authorization_code",
+        }
+        response = requests.post(token_url, data=data)
+        token_data = response.json()
+
+        # Check if the response contains the 'access_token' key
+        access_token = token_data.get("access_token")
+
+        if not access_token:
+            # If 'access_token' is missing, handle the error
+            raise Exception("Access token not found in the response")
+
+        # Get user info from Google using the access token
+        user_info_url = "https://www.googleapis.com/oauth2/v1/userinfo"
+        headers = {"Authorization": f"Bearer {access_token}"}
+        user_info_response = requests.get(user_info_url, headers=headers)
+        user_info = user_info_response.json()
+        print(user_info)
+
+        # Check if the user with this email already exists in the database
+        try:
+            user = models.User.objects.get(
+                email=user_info["email"]
+            )  # Use the Django User model
+        except models.User.DoesNotExist:
+            # If the user doesn't exist, create a new user
+            user = models.User.objects.create(
+                username=user_info["email"],  # Use email as the username
+                email=user_info["email"],
+                first_name=user_info.get("given_name", ""),
+                last_name=user_info.get("family_name", ""),
+                # Other fields as needed based on your User model
+            )
+
+        # Save the user before authenticating
+        user.save()
+
+        # Authenticate the user and log in
+        user = authenticate(request, username=user.username)
+        login(request, user)
+
+        # Redirect to a success page or homepage
+        return redirect("core:home")
+        # Replace 'home' with the name of your homepage URL pattern
+
+    except Exception as e:
+        # Handle any exceptions or errors during the OAuth process
+        messages.error(request, "Something went wrong with Google authentication.")
+        return redirect("core:home")

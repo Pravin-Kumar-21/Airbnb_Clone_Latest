@@ -9,4 +9,8 @@ urlpatterns = [
     path("login/github/callback", views.github_callback, name="github-callback"),
     path("logout", views.log_out, name="logout"),
     path("verify/<str:key>", views.complete_verification, name="complete-verification"),
+    path("google/login/", views.google_login, name="google_login"),
+    path(
+        "accounts/google/login/callback/", views.google_callback, name="google_callback"
+    ),
 ]
