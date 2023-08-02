@@ -1,0 +1,27 @@
+{
+  "name": "airbnb_clone",
+  "version": "1.0.0",
+  "description": "This is the Airbnb Clone Project which is created by Python, Tailwind, Django ...💚🐍🌠",
+  "main": "index.js",
+  "devDependencies": {
+    "autoprefixer": "^10.4.14",
+    "node-sass": "^9.0.0",
+    "postcss": "^8.4.27",
+    "sass": "^1.64.2",
+    "sass-loader": "^13.3.2",
+    "tailwindcss": "^3.3.3",
+    "vite": "^4.4.8"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "vite",
+    "build": "vite build",
+    "serve": "vite preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vitejs/plugin-vue": "^4.2.3"
+  }
+}
