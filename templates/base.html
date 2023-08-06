@@ -4,26 +4,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{% static 'css/styles.css' %}" rel="stylesheet"><link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     <title>{% block page_name %}{% endblock page_name %} | Airbnb</title>
   </head>
-  <body> 
-    <header class="max-w-full">
-    <div>
-      <a href ="{% url "core:home" %}">Airbnb
-      <img class="w-8" src="{% static 'img/logo.png' %}" alt="Logo">
-      </a>
-      {% include "Partials/nav.html" %}
-      {% block search-bar %}
+  <body class="text-gray-800"> 
+    <header class="container max-w-full flex items-center justify-between px-6 h-20 border-b border-gray-300" >
+      <div class="flex items-center ">
+        <a href ="{% url "core:home" %}" class="mr-6">
+        <img class="w-8" src="{% static 'img/logo.png' %}" alt="Logo">
+        </a>
+        {% block search-bar %}
         <form method="get" action="{% url "rooms:search" %}" >
-          <input name="city" placeholder="Search by City"/>
+          <input class="border px-3 py-2 rounded-md" name="city" placeholder="Search by City"/>
         </form>
-      {% endblock search-bar %}
-    </div>
+        {% endblock search-bar %}
+      </div>
+      {% include "Partials/nav.html" %}
     </header>
     {% block content %}{% endblock %}
     {%include "Partials/footer.html" %}
