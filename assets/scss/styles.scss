@@ -3,14 +3,7 @@
 @import './../../node_modules/tailwindcss/utilities.css';
 @import './../../node_modules/tailwindcss/components.css';
 
-// Your custom SCSS code goes below
-// For example:
-html{
-    font-size: 20px;
-}
-.box{
-    font-size: 10px;
-    .child{
-        width:0.5rem;
-    }
+.search-box{
+    transition: box-shadow .4s linear;
+
 }
