@@ -31,7 +31,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import '/@/styles.scss';`, // Use the alias to fix the path
+        additionalData: `@import './assets/scss/styles.scss';`, // Use the alias to fix the path
       },
     },
   },
