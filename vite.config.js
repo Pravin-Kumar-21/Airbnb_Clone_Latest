@@ -8,12 +8,14 @@ import sassPlugin from 'vite-plugin-sass';
 
 export default defineConfig({
   plugins: [
-    postcss({
-      plugins: [tailwindcss('./tailwind.config.js')],
-      extract: path.resolve('static/css/style.css'),
-    }),
     vue(),
-    sassPlugin()
+    sassPlugin({
+      preprocessOptions: {
+        scss: {
+          additionalData: `@import './assets/scss/styles.scss';`, // Use the alias to fix the path
+        },
+      },
+    }),
   ],
   build: {
     outDir: 'static',
@@ -31,7 +33,7 @@ export default defineConfig({
   css: {
     preprocessorOptions: {
       scss: {
-        additionalData: `@import './assets/scss/styles.scss';`, // Use the alias to fix the path
+        additionalData: `@import '/@/styles.scss';`, // Use the alias to fix the path
       },
     },
   },

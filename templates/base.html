@@ -4,7 +4,6 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
     <title>{% block page_name %}{% endblock page_name %} | Airbnb</title>
@@ -17,7 +16,7 @@
         </a>
         {% block search-bar %}
         <form method="get" action="{% url "rooms:search" %}" class="w-9/12" >
-          <input class="search-box border px-5  text-sm font-medium  focus:outline-none placeholder-gray-400 py-3 rounded-md w-80 shadow-md hover:shadow-lg text-gray-900" name="city" placeholder="Search by City"/>
+          <input class="search-box justify-center border px-5  text-sm font-medium  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 shadow-md hover:shadow-lg text-gray-900" name="city" placeholder="Search by City"/>
         </form>
         {% endblock search-bar %}
       </div>

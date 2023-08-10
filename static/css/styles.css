@@ -2,5 +2,4 @@
 @import url(./../../node_modules/tailwindcss/utilities.css);
 @import url(./../../node_modules/tailwindcss/components.css);
 .search-box {
-  transition: box-shadow 0.4s linear;
-}
+  transition: box-shadow .4s linear; }
