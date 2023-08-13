@@ -9,11 +9,7 @@
 <div class="container mx-auto">
     <div class ="h-3/4 rounded-xl  mt-32 mb-16 bg-gray-800 w-full justify-center bg-inherit bg-bottom" style=" background-size: cover;  background-image: url(/static/img/bg2.jpg);"></div>
     {% for room in rooms %}
-    <h3>
-        <a href="{% url "rooms:detail" room.pk %}">
-            {{room.name}} / ${{room.price}}
-        </a>    
-    </h3>
+        {% include 'Partials/room_card.html' with room=room %}
     {% endfor %}
 
     <h5>
