@@ -1,17 +1,20 @@
-<div class="w-1/4 mb-10 px-5">
+<div class="w-1/4 mb-10 px-5 overflow-hidden">
     <div class="w-full h-64 bg-cover bg-center rounded-lg mb-2" style="background-image: url({{room.first_photo}}) ;"></div>
-    <div class="flex justify-between">
-        <div>
+    <div class="flex justify-between mb-1  truncate">
+        <div class="w-4/5 overflow-hidden flex">
             
             {% if room.host.superhost %}
-                <span class="uppercase font-medium text-xs border border-black rounded py-px px-1">superhost </span>                
+                <span class="uppercase font-medium text-xs border border-black rounded justify-center mb-4 py-px px-1 ">superhost </span>                
             {% endif %}
-                
-            <span class="text-gray-600 pl-2">{{room.city}}</span>
+               <div>
+                   <span class=" text-gray-600 pl-1 text-sm block truncate ">{{room.city}},{{room.country.name}}</span>
+               </div> 
         </div>
         <div>
-            <i class="text-red-500 fa-sharp fa-solid fa-star text-xs mr-1"></i>
+            <i class="text-red-500 fa-sharp fa-solid fa-star text-xs mr-1 truncate"></i>
             <span class="text-xs">{{room.total_rating}}</span>
         </div>
     </div>
+    <span class="11/12 block truncate">{{room.name}}</span>
+    <span class="pt-4  shadow-sm rounded-sm text-lg font-light"> ${{room.price}}</span>
 </div>

@@ -6,23 +6,23 @@
 {% endblock page_name %} 
 
 {%block content %} 
-<div class="container mx-auto">
+<div class="container mx-auto pb-10">
     <div class ="h-3/4 rounded-xl  mt-32 mb-16 bg-gray-800 w-full justify-center bg-inherit bg-bottom" style=" background-size: cover;  background-image: url(/static/img/bg2.jpg);"></div>
     <div class="flex flex-wrap">
         {% for room in rooms %}
             {% include 'Partials/room_card.html' with room=room %}
         {% endfor %}
     </div>
-    <h5>
+    <div class="flex items-center justify-center">
     {% if page_obj.has_previous %}
-        <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+        <a href="?page={{page_obj.previous_page_number}}" class="text-gray-600"><i class="fas fa-arrow-left fa-lg"></i></a>
     {% endif %}
-    Page {{page_obj.number}} of {{page_obj.paginator.num_pages}}
+    <span class="mr-3 ml-3 font-medium text-lg text-gray-600">{{page_obj.number}} of {{page_obj.paginator.num_pages}}</span>
 
     {% if page_obj.has_next %}
-        <a href="?page={{page_obj.next_page_number}}">Next</a>
+        <a href="?page={{page_obj.next_page_number}}" class="text-gray-600"><i class="fas fa-arrow-right fa-lg"></i></a>
     {% endif %}
-    </h5> 
+    </div> 
         
 </div>
 {% endblock content %}
