@@ -8,10 +8,11 @@
 {%block content %} 
 <div class="container mx-auto">
     <div class ="h-3/4 rounded-xl  mt-32 mb-16 bg-gray-800 w-full justify-center bg-inherit bg-bottom" style=" background-size: cover;  background-image: url(/static/img/bg2.jpg);"></div>
-    {% for room in rooms %}
-        {% include 'Partials/room_card.html' with room=room %}
-    {% endfor %}
-
+    <div class="flex flex-wrap">
+        {% for room in rooms %}
+            {% include 'Partials/room_card.html' with room=room %}
+        {% endfor %}
+    </div>
     <h5>
     {% if page_obj.has_previous %}
         <a href="?page={{page_obj.previous_page_number}}">Previous</a>

@@ -4,6 +4,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="https://kit.fontawesome.com/ca547ebe4a.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
 
@@ -13,11 +14,13 @@
     <header class="container max-w-full inset-0 flex items-center justify-between px-6 h-20 border-b border-gray-300 fixed bg-white " >
       <div class="flex items-center ">
         <a href ="{% url "core:home" %}" class="mr-6">
-        <img class="w-8" src="{% static 'img/logo.png' %}" alt="Logo">
-        </a>
+          <div class="">
+            <img class="w-40  mb-16 py-6 mt-14 bg-cover bg-center" src="{% static 'img/logo2.png' %}" alt="Logo">
+          </div>
+          </a>
         {% block search-bar %}
         <form method="get" action="{% url "rooms:search" %}" class="w-9/12" >
-          <input class="search-box border px-5 mt-3 text-sm font-medium  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 shadow-md hover:shadow-lg text-gray-900" name="city" placeholder="Search by City"/>
+          <input class="search-box border  float-left  px-8 mt-3  text-sm font-medium  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 shadow-md hover:shadow-lg text-gray-900" name="city" placeholder="Search by City"/>
         </form>
         {% endblock search-bar %}
       </div>
