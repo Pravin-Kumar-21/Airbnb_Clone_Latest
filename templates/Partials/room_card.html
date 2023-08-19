@@ -6,15 +6,15 @@
             {% if room.host.superhost %}
                 <span class="uppercase font-medium text-xs border border-black rounded justify-center mb-4 py-px px-1 ">superhost </span>                
             {% endif %}
-               <div>
-                   <span class=" text-gray-600 pl-1 text-sm block truncate ">{{room.city}},{{room.country.name}}</span>
+               <div class=" text-gray-600 pl-2 text-sm block truncate " >
+                   <span>{{room.city}},&nbsp;{{room.country.name}}</span>
                </div> 
         </div>
-        <div>
-            <i class="text-red-500 fa-sharp fa-solid fa-star text-xs mr-1 truncate"></i>
+        <div class="flex">
+            <div class=""><i class="text-red-500 fa-sharp fa-solid fa-star text-xs mr-1 truncate"></i></div>
             <span class="text-xs">{{room.total_rating}}</span>
         </div>
     </div>
-    <span class="11/12 block truncate">{{room.name}}</span>
-    <span class="pt-4  shadow-sm rounded-sm text-lg font-light"> ${{room.price}}</span>
+    <span class="text-black w-11/12 block truncate">{{room.name}}</span>
+    <span class="pt-4 rounded-md text-lg font-normal"> ${{room.price}}</span>
 </div>
