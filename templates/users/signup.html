@@ -8,10 +8,20 @@
 {% endblock search-bar %}
 
 {% block content %}
+<div class="container lg:w-5/12 md:w-1/2 xl:w-1/4 mx-auto my-10 flex flex-col items-center border p-6 border-gray-400">
     {% include 'Partials/social_login.html' %}
     <form method = "POST" action="{% url "users:signup" %}">
-            {% csrf_token %}
-        {{form.as_p}}
-        <button>SignUp</button>
+        {% csrf_token %}
+        <input type="text" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="First Name" value="{{ form.first_name.value }}">
+        <input type="text" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Last Name" value="{{ form.last_name.value }}">
+        <input type="email" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Email" value="{{ form.email.value }}">
+        <input type="password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Password" value="{{ form.password.value }}">
+        <input type="password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Confirm Password" value="{{ form.password1.value }}">
+        <button class="w-full text-center rounded-sm py-5 font-light text-lg bg-red-400 text-white">SignUp</button>
     </form>
+    <div class="mt-4 font-extralight">
+        <span> Have an account? </span>
+        <a href="{% url 'users:login' %}" class="text-green-300 font-normal">&nbsp;&nbsp;Login </a>
+    </div>
+    </div>
 {% endblock content %} 

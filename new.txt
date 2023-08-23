@@ -1,0 +1,2 @@
+<!-- text-center rounded-sm py-5 font-light text-lg --> 
+class="w-full mb-3 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus: outline-none focus:border-gray-600">

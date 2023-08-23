@@ -13,8 +13,8 @@
         
         <form method = "POST" action="{% url "users:login" %}" class="w-full">
                 {% csrf_token %}
-            <input type="email" placeholder="Email Address" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus: outline-none focus:border-gray-600">
-            <input type="password" placeholder="Password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus: outline-none focus:border-gray-600">
+            <input type="email" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" value="{{ form.email.value }}">
+            <input type="password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" value="{{ form.password.value }}">
             <button class="w-full bg-red-400 text-center rounded-md mt-4 mb-4 py-5 font-light text-lg">Login</button>
         </form>
         <div class="mt-4 font-extralight">
