@@ -7,6 +7,9 @@
     transition: box-shadow .4s linear;
 
 }
+.btn{
+    @apply text-center rounded-sm py-5 font-light text-lg;
+}
 /* styles.css */
 /* ! tailwindcss v3.3.3 | MIT License | https://tailwindcss.com */
 /*
