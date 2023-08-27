@@ -13,4 +13,5 @@ urlpatterns = [
     path(
         "accounts/google/login/callback/", views.google_callback, name="google_callback"
     ),
+    path("<int:pk>", views.UserProfileView.as_view(), name="profile"),
 ]

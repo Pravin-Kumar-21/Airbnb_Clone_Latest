@@ -1,7 +1,8 @@
+from typing import Any, Dict
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView
+from django.views.generic import FormView, DetailView
 from django.views import View
 from . import forms, models
 from django.contrib.auth import authenticate, login, logout
@@ -188,7 +189,6 @@ def google_callback(request):
         # Authenticate the user and log in
         user = authenticate(request, username=user.username)
         login(request, user)
-
         # Redirect to a success page or homepage
         return redirect("core:home")
         # Replace 'home' with the name of your homepage URL pattern
@@ -197,3 +197,8 @@ def google_callback(request):
         # Handle any exceptions or errors during the OAuth process
         messages.error(request, "Something went wrong with Google authentication.")
         return redirect("core:home")
+
+
+class UserProfileView(DetailView):
+    model = models.User
+    context_object_name = "user_obj"

@@ -13,9 +13,9 @@
 </div>
 <div>
     <h2>
-        By: {{room.host.username}}</h2> 
+        By: <a href="{{room.host.get_absolute_url}}">{{room.host.username}}</a>  </h2> 
         {% if room.host.superhost    %}
-                {{superhost}}
+                {{superhost}}green
         {% endif %}
     </h2>
 

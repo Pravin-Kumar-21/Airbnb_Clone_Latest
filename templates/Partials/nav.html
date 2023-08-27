@@ -1,6 +1,7 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 <ul class="flex items-center text-sm font-medium h-full">
     {% if user.is_authenticated %}
+        <li class="ml-8"><a href="{{user.get_absolute_url}}">Your Profile</a></li>
         <li class="ml-8"><a href="{% url "users:logout" %}">Log Out</a></li>
     {% else %}
         <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a class="py-10 px-5" href=" {% url "users:login" %} ">Login</a></li>
