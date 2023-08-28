@@ -15,20 +15,31 @@
             
             {% else %}
             <div class="h-20 w-20 bg-gray-700 rounded-full text-white flex justify-center items-center text-3xl">
-                <span>{{user_obj.first_name|first}}
-                    
-                    
-                </span>
+                <span>{{user_obj.first_name|first}}</span>
                 {% endif %}
             </div>
             
             <span class="text-center font-light font-mono mt-4">Hi, {{user_obj.first_name}}
                 {% if user_obj.superhost %}
-                    <i class="fa-solid fa-check-circle"></i>
+                    <i class="fa-solid fa-circle-check"></i>
                 {% endif %}
                 <br>
                 <span class="text-sm">|&nbsp;{{user_obj.bio}}&nbsp;|</span>
             </span>
-        <a class="pt-2 text-sm font-extralight " href="#">Edit Profile</a>
+        
+        {% if user == user_obj %}
+            <a class="pt-2 text-sm font-extralight bg-red-400 w-3/4 text-center py-3 px-2 rounded-lg mt-4" href="#">Edit Profile</a>
+        {% endif %}
+            
+    </div>
+    <div class="container  mx-auto pb-10 flex flex-col items-center">
+        <h3 class="mx-auto mb-12 text-lg font-light">{{user_obj.first_name}}'s Rooms</h3>
+        <div class="container flex flex-wrap  mb-10">
+            
+            {% for room in user_obj.rooms.all %}
+                {% include 'Partials/room_card.html' with room=room %}
+            {% endfor %}       
+        </div>
+
     </div>
         {% endblock content %} users_detail
