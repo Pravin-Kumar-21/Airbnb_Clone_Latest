@@ -2,7 +2,7 @@ from typing import Any, Dict
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
-from django.views.generic import FormView, DetailView
+from django.views.generic import FormView, DetailView, UpdateView
 from django.views import View
 from . import forms, models
 from django.contrib.auth import authenticate, login, logout
@@ -202,3 +202,23 @@ def google_callback(request):
 class UserProfileView(DetailView):
     model = models.User
     context_object_name = "user_obj"
+
+
+class UpdateProfileView(UpdateView):
+    pass
+    model = models.User
+    template_name = "users/update-profile.html"
+    fields = (
+        "first_name",
+        "last_name",
+        "avatar",
+        "gender",
+        "bio",
+        "birthdate",
+        "language",
+        "currency",
+        "superhost",
+    )
+
+    def get_object(self, queryset=None):
+        return self.request.user

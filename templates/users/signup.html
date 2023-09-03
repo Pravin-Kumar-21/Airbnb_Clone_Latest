@@ -17,11 +17,11 @@
     <input type="email" name="email" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Email">
     <input type="password" name="password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Password">
     <input type="password" name="password1" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Confirm Password">           
-    <button class="w-full text-center rounded-sm py-5 font-light text-lg bg-red-400 text-white">SignUp</button>
+    <button class="w-full text-center rounded-sm py-5 font-light text-lg bg-red-400 text-white hover:bg-red-500">SignUp</button>
     </form>
     <div class="mt-4 font-extralight">
         <span> Have an account? </span>
-        <a href="{% url 'users:login' %}" class="text-green-300 font-normal">&nbsp;&nbsp;Login </a>
+        <a href="{% url 'users:login' %}" class="text-green-300 font-normal hover:text-green-500">&nbsp;&nbsp;Login </a>
     </div>
     </div>
 {% endblock content %}

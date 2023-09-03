@@ -13,13 +13,13 @@
         
         <form method = "POST" action="{% url "users:login" %}" class="w-full">
                 {% csrf_token %}
-            <input type="email" name="email" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Email Addresss" >
-            <input type="password" name="password" class="w-full mb-2 border border-gray-200 rounded-md py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Password">
-            <button class="w-full bg-red-400 text-center rounded-md mt-4 mb-4 py-5 font-light text-lg">Login</button>
+            <input type="email" name="email" class="w-full mb-2 border border-gray-200 rounded-sm py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Email Addresss" >
+            <input type="password" name="password" class="w-full mb-2 border border-gray-200 rounded-sm py-5 font-light text-lg text-left px-5 border-solid focus:outline-none focus:border-gray-600" placeholder="Password">
+            <button class="w-full bg-red-400 text-center rounded-sm mt-4 mb-4 py-5 font-light text-lg hover:bg-red-500">Login</button>
         </form>
         <div class="mt-4 font-extralight">
             <span>Don't have an account? </span>
-            <a href="{% url 'users:signup' %}" class="text-green-300 font-normal">&nbsp;&nbsp;SignUp </a>
+            <a href="{% url 'users:signup' %}" class="text-green-300 font-normal hover:text-green-500">&nbsp;&nbsp;SignUp </a>
         </div>
     </div>
 {% endblock content %} users_detail
