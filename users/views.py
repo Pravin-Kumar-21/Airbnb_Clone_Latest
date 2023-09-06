@@ -2,6 +2,7 @@ from typing import Any, Dict
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from django.urls import reverse_lazy, reverse
+from django.contrib.auth.views import PasswordChangeView
 from django.views.generic import FormView, DetailView, UpdateView
 from django.views import View
 from . import forms, models
@@ -222,3 +223,8 @@ class UpdateProfileView(UpdateView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class UpdatePasswordView(PasswordChangeView):
+    template_name = "users/update-password.html"
+    success_url = reverse_lazy("core:home")

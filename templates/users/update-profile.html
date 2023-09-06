@@ -14,7 +14,11 @@
     {{ form.as_p }}
     {{field.label}}
     </div>
-  </div>
+  </form>
   <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded ml-10" type="submit">Save Changes</button>
-</form>
+  <div class="mt-4 font-extralight">
+    <a href="{% url 'users:password' %}" class="bg-red-300 hover:bg-red-400 text-white font-extralight py-2 px-2 rounded ml-10">Change Password</a>
+  </div>
+  </div>
+    
 {% endblock %}
