@@ -11,9 +11,11 @@ import os
 import requests
 from django.contrib import messages
 import json
+from django.contrib.messages.views import SuccessMessageMixin
+from . import mixins
 
 
-class LoginView(FormView):
+class LoginView(mixins.LoggedOutOnlyView, FormView):
     template_name = "users/login.html"
     form_class = forms.LoginForm
     success_url = reverse_lazy("core:home")
@@ -205,7 +207,7 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
 
 
-class UpdateProfileView(UpdateView):
+class UpdateProfileView(SuccessMessageMixin, UpdateView):
     pass
     model = models.User
     template_name = "users/update-profile.html"
@@ -220,6 +222,7 @@ class UpdateProfileView(UpdateView):
         "currency",
         "superhost",
     )
+    success_message = "Profile Updated"
 
     def get_object(self, queryset=None):
         return self.request.user

@@ -159,3 +159,4 @@ cython_debug/
 #  option (not recommended) you can uncomment the following to ignore the entire idea folder.
 #.idea/
 .env
+#Payment Gateway Integration: [Specify the payment gateway used, e.g., Stripe, PayPal]
