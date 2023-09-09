@@ -1,7 +1,12 @@
 from django.shortcuts import redirect
-from django.urls import reverse
-from django.contrib.auth.mixins import UserPassesTestMixin
+from django.urls import reverse, reverse_lazy
+from django.contrib.auth.mixins import UserPassesTestMixin, LoginRequiredMixin
 from django.http.response import HttpResponseRedirect
+
+
+class EmailLoginOnlyView(UserPassesTestMixin):
+    def test_func(self):
+        return self.request.user.login_method == "email"
 
 
 class LoggedOutOnlyView(UserPassesTestMixin):
@@ -12,3 +17,7 @@ class LoggedOutOnlyView(UserPassesTestMixin):
 
     def handle_no_permission(self):
         return redirect("core:home")
+
+
+class LoggedInOnlyView(LoginRequiredMixin):
+    login_url = reverse_lazy("users:login")

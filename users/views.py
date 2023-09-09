@@ -28,6 +28,13 @@ class LoginView(mixins.LoggedOutOnlyView, FormView):
             login(self.request, user)
         return super().form_valid(form)
 
+    def get_success_url(self):
+        next_arg = self.request.GET.get("next")
+        if next_arg is not None:
+            return next_arg
+        else:
+            return reverse("core:home")
+
 
 def log_out(request):
     logout(request)
@@ -207,7 +214,7 @@ class UserProfileView(DetailView):
     context_object_name = "user_obj"
 
 
-class UpdateProfileView(SuccessMessageMixin, UpdateView):
+class UpdateProfileView(mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateView):
     pass
     model = models.User
     template_name = "users/update-profile.html"
@@ -228,6 +235,8 @@ class UpdateProfileView(SuccessMessageMixin, UpdateView):
         return self.request.user
 
 
-class UpdatePasswordView(PasswordChangeView):
+class UpdatePasswordView(
+    mixins.LoggedInOnlyView, PasswordChangeView, SuccessMessageMixin
+):
     template_name = "users/update-password.html"
     success_url = reverse_lazy("core:home")
