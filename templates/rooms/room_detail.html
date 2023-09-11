@@ -60,14 +60,33 @@
                     <li class="mb-2 pl-6 mr font-extralight text-normal ">{{h}}</li>
                 {% endfor %}    
             </div>
-            <div class="mt-8 pb-5 border-b border-gray-300 text-lg">
+            <div class=" mt-8 pb-5 border-b border-gray-300 text-lg font-bold">
                 <h4 class="font-medium text-xl mb-5">Reviews</h4>
-                <div class="flex items-center">
-                    <div class="mr-5">
+                <div class="flex flex-row text-center">
+                    <div>
                         <i class="fas fa-star text-red-500"></i>
-                        <span class="text-bold font-normal" >{{room.total_rating}}</span>
+                        <span class="font-bold " >{{room.total_rating}}</span>
                     </div>
-                    {{room.reviews.count}} review{{room.reviews.count|pluralize}}
+                    <div class=" h-6 w-px bg-gray-400 ml-4 mr-4"></div>
+                    <div>
+                        <span class="font-bold text-xl">{{room.reviews.count}}</span>
+                        <span class="font-light text-base ">Review{{room.reviews.count|pluralize}}</span> 
+                    </div>
+                </div>
+                <div class="text-sm font-light mt-4 mb-10 ml-10">
+                    
+                    {% for review in room.reviews.all %}
+                    <div class="mt-8 pb-5 border-b border-gray-200">
+                        <div>
+                            <div></div>
+                            <div>
+                                
+                            </div>
+                        </div>
+                        <p>{{review.review}}</p>
+                    </div>
+                    {% endfor %}
+                        
                 </div>
             </div>
         </div>
