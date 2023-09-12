@@ -77,13 +77,16 @@
                     
                     {% for review in room.reviews.all %}
                     <div class="mt-8 pb-5 border-b border-gray-200">
-                        <div>
-                            <div></div>
-                            <div>
-                                
+                        <div class="flex flex-row">
+                            <div class="h-10 w-10 bg-gray-600 rounded-full mb-2 text-white flex justify-center items-center text-lg">
+                             <span>{{review.user.first_name|first}}</span>   
+                            </div>
+                            <div class="flex flex-col ml-1 mt-1 ">
+                                <span class="font-medium pl-2 ">{{review.user.first_name}}</span>
+                                <span class="text-sm text-gray-500 pl-2">{{review.created|date:'F Y'}}</span>
                             </div>
                         </div>
-                        <p>{{review.review}}</p>
+                        <p class="pt-2">{{review.review}}</p>
                     </div>
                     {% endfor %}
                         
