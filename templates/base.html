@@ -6,7 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://kit.fontawesome.com/ca547ebe4a.js" crossorigin="anonymous"></script>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <link href="/static/css/styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
     <title>{% block page_name %}{% endblock page_name %} | Airbnb</title>
   </head>
@@ -19,7 +20,7 @@
         </div>
           </a>
         {% block search-bar %}
-        <form method="get" action="{% url "rooms:search" %}" class="w-9/12 pt-9" >
+        <form method="get" action="{% url "rooms:search" %}" class="search-box w-9/12 pt-9" >
           <input class="search-box border pt-4  float-left mt-2  px-8 text-sm font-light  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 shadow-md" name="city" placeholder="Search by City"/>
         </form>
         {% endblock search-bar %}
