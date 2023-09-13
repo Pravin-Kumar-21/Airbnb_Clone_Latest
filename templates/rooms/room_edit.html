@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block page_name %}
+    Edit Room
+{% endblock page_name %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block content %}
+<div class="container mx-auto my-10 flex flex-col items-center border border-gray-300 rounded-md p-6">
+    <span class="text-lg text-center border px-4 py-6 mr-8 rounded-md ml-8 font-normal text-white mb-4 bg-red-400" style="font-weight: bold;">Update Your Room</span>
+    <form method="post" enctype="multipart/form-data" class="w-full max-w-lg">
+        {% csrf_token %}
+        <div class="w-full mb-4">
+            <label for="id_name" class="block text-sm font-bold mb-2">Name:</label>
+            <input type="text" name="name" id="id_name" value="{{ object.name }}" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+        </div>
+        <!-- Add similar Tailwind CSS classes to other form fields -->
+
+        <button class="bg-red-400 hover:bg-red-500 text-white font-bold py-2 px-4 rounded ml-2" type="submit">Save Changes</button>
+    </form>
+</div>
+{% endblock %}

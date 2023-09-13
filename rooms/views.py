@@ -1,8 +1,9 @@
-from django.views.generic import ListView, DetailView, View
+from django.views.generic import ListView, DetailView, View, UpdateView
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django_countries import countries
 from . import models, forms
+from users import mixins as user_mixins
 
 
 class HomeView(ListView):
@@ -79,3 +80,41 @@ class SearchView(View):
         else:
             form = forms.SearchForm()
         return render(request, "rooms/search.html", {"form": form})  # type: ignore
+
+
+class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
+    model = models.Room
+    template_name = "rooms/room_edit.html"
+    fields = (
+        "name",
+        "description",
+        "country",
+        "city",
+        "price",
+        "address",
+        "guest",
+        "beds",
+        "bedrooms",
+        "baths",
+        "check_in",
+        "check_out",
+        "instant_book",
+        "host",
+        "room_type",
+        "amenities",
+        "facilities",
+        "house_rules",
+    )
+
+    def form_valid(self, form):
+        # Get the current room instance
+        room = self.get_object()
+
+        # Update the room name with the form data
+        room.name = form.cleaned_data["name"]
+        room.save()
+
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        print(room)
+        return room
