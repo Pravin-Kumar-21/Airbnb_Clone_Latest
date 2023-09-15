@@ -1,109 +1,120 @@
 {% extends "base.html" %}
 
+{% block search-bar %}
+{% endblock search-bar %}
+page_title
+    
 {% block content %}
-  <h1>Edit Room</h1>
+<div class="-mx-1 -mb-8">
+  <h1 class="text-center mt-10 bg-red-400 text-white font-normal text-base mx-96 py-4 px-4 rounded-md">Edit Room</h1>
+</div>
   <form method="post">
     {% csrf_token %}
-    
-    <div class="mb-2">
-      <label for="{{ form.name.id_for_label }}" class="block font-light text-lg mb-1">Name:</label>
-      {{ form.name }}
+  <div class="container w-3/5 mx-auto my-10 bg-gray-50 pr-40 flex flex-col items-center rounded-sm border p-6 border-gray-100">    
+    <div class="mb-5 flex font-light ">
+      <label for="{{ form.name.id_for_label }}" class="w-48 pt-4 ml-5 font-extralight text-lg px-5 focus:outline-none">Name</label>
+      <span>{{ form.name }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.description.id_for_label }}" class="block font-light text-lg mb-1">Description:</label>
-      {{ form.description }}
+    <div class="mb-5 ml-44 flex">
+      <label for="{{ form.description.id_for_label }}" class="w-48 pt-4 ml-5 font-extralight text-lg px-5 focus:outline-none">Description:</label>
+      <span>{{ form.description }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.country.id_for_label }}" class="block font-light text-lg mb-1">Country:</label>
+    <div class="mb-5 flex ">
+      <label for="{{ form.country.id_for_label }}" class="w-48  pt-4 pr-36 ml-36 font-extralight text-lg px-5 focus:outline-none">Country:</label>
       {{ form.country }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.city.id_for_label }}" class="block font-light text-lg mb-1">City:</label>
-      {{ form.city }}
+    <div class="mb-5 ml-48 -mr-20">
+      <label for="{{ form.city.id_for_label }}" class="w-48  pt-4 pr-32 font-extralight text-lg px-5 focus:outline-none">City:</label>
+      <span class="mr-56 ">{{ form.city }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.price.id_for_label }}" class="block font-light text-lg mb-1">Price:</label>
-      {{ form.price }}
+    <div class="mb-5 ml-10 ">
+      <label for="{{ form.address.id_for_label }}" class="w-48  pt-4 pr-28 ml-5 font-extralight text-lg px-5 focus:outline-none">Address:</label>
+      <span class="mr-8">{{ form.address }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.address.id_for_label }}" class="block font-light text-lg mb-1">Address:</label>
-      {{ form.address }}
+    <div class="mb-5 ml-12">
+      <label for="{{ form.price.id_for_label }}" class="w-48  pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Price:</label>
+      {{form.price }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.guest.id_for_label }}" class="block font-light text-lg mb-1">Guest:</label>
-      {{ form.guest }}
+    <div class="mb-5 ml-10">
+      <label for="{{ form.guest.id_for_label }}" class="w-48  pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Guest:</label>
+      <span class="">{{ form.guest }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.beds.id_for_label }}" class="block font-light text-lg mb-1">Beds:</label>
+    <div class="mb-5 ml-12">
+      <label for="{{ form.beds.id_for_label }}" class="w-48 pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Beds:</label>
       {{ form.beds }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.bedrooms.id_for_label }}" class="block font-light text-lg mb-1">Bedrooms:</label>
-      {{ form.bedrooms }}
+    <div class="mb-5 ml-4">
+      <label for="{{ form.bedrooms.id_for_label }}" class="w-48 pt-4 pr-52 ml-6  font-extralight text-lg px-5 focus:outline-none">Bedrooms:</label>
+      <span class="-ml-20">{{ form.bedrooms }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.baths.id_for_label }}" class="block font-light text-lg mb-1">Baths:</label>
+    <div class="mb-5 ml-10">
+      <label for="{{ form.baths.id_for_label }}" class="w-48 pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Baths:</label>
       {{ form.baths }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.check_in.id_for_label }}" class="block font-light text-lg mb-1">Check-In:</label>
+    <div class="flex mb-4 ml-1">
+      <label for="{{ form.check_in.id_for_label }}"class="ml-72 w-56 pt-4 pr-24 font-extralight text-lg px-5 focus:outline-none">Check-In:</label>
       {{ form.check_in }}
+      <span class="mt-1 pt-1 w-60 h-8 block  font-extralight text-sm focus:outline-none">hrs:min:Sec</span>
     </div>
-    
-    <div class="mb-2">
-      <label for="{{ form.check_out.id_for_label }}" class="block font-light text-lg mb-1">Check-Out:</label>
+
+    <div class="flex mb-4 ml-1">
+      <label for="{{ form.check_out.id_for_label }}"class="ml-72 w-56 pt-4 pr-24 font-extralight text-lg px-5 focus:outline-none">Check-Out:</label>
       {{ form.check_out }}
+      <span class="mt-1 pt-1 w-60 h-8 block  font-extralight text-sm focus:outline-none">hrs:min:sec</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.instant_book.id_for_label }}" class="block font-light text-lg mb-1">Instant Book:</label>
+    <div class="mb-5 -ml-72 ">
+      <label for="{{ form.instant_book.id_for_label }}" class="w-48 pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Instant Book:</label>
       {{ form.instant_book }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.host.id_for_label }}" class="block font-light text-lg mb-1">Host:</label>
+    <div class="mb-5 ml-16 ">
+      <label for="{{ form.host.id_for_label }}" class="w-48 pt-4 pr-36 font-extralight text-lg focus:outline-none">Host:</label>
       {{ form.host }}
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.room_type.id_for_label }}" class="block font-light text-lg mb-1">Room Type:</label>
-      {{ form.room_type }}
+    <div class="mb-5 mr-5">
+      <label for="{{ form.room_type.id_for_label }}" class="w-48 pt-4 pr-72 font-extralight text-lg focus:outline-none">Room Type:</label>
+      <span class="mr-10 -ml-48">{{ form.room_type }}</span>
     </div>
     
-    <div class="mb-2">
-      <label for="{{ form.amenities.id_for_label }}" class="block font-light text-lg mb-1">Amenities:</label>
+    <div class="mb-5">
+      <label for="{{ form.amenities.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Amenities:</label>
       {{ form.amenities }}
     </div>
     
     <div class="mb-2">
-      <label for="{{ form.facilities.id_for_label }}" class="block font-light text-lg mb-1">Facilities:</label>
+      <label for="{{ form.facilities.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Facilities:</label>
       {{ form.facilities }}
     </div>
     
     <div class="mb-2">
-      <label for="{{ form.house_rules.id_for_label }}" class="block font-light text-lg mb-1">House Rules:</label>
+      <label for="{{ form.house_rules.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">House Rules:</label>
       {{ form.house_rules }}
     </div>
 
     <style>
       input[type="text"] {
         height: 44px;
+        border-radius: 4px;
       }
     </style>
 
-
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-light py-2 px-4 rounded">
+    <button type="submit" class="mt-10 bg-red-400 hover:bg-red-500 text-white font-light py-4 ml-16 px-4 rounded">
       Save Changes
     </button>
+    </div>
   </form>
+</div>
+
 {% endblock %}

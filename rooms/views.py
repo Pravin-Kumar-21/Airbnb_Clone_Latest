@@ -106,14 +106,6 @@ class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
         "house_rules",
     )
 
-    def form_valid(self, form):
-        # Get the current room instance
-        room = self.get_object()
-
-        # Update the room name with the form data
-        room.name = form.cleaned_data["name"]
-        room.save()
-
     def get_object(self, queryset=None):
         room = super().get_object(queryset=queryset)
         print(room)
