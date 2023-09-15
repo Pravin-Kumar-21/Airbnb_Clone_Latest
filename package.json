@@ -18,9 +18,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "vite",
-    "css": "tailwind build ./static/css/tailwind.css -o ./static/css/style.css && cleancss -o ./static/css/style.min.css ./static/css/style.css --watch",
     "build": "vite build",
-    "css2": "node-sass assets/scss/styles.scss static/css/styles.css",
+    "css": "node-sass assets/scss/styles.scss static/css/styles.css",
     "serve": "vite preview"
   },
   "keywords": [],
