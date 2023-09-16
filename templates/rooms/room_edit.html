@@ -5,7 +5,7 @@
 page_title
     
 {% block content %}
-<div class="-mx-1 -mb-8">
+<div class="mx-auto my-auto">
   <h1 class="text-center mt-10 bg-red-400 text-white font-normal text-base mx-96 py-4 px-4 rounded-md">Edit Room</h1>
 </div>
   <form method="post">
@@ -26,83 +26,102 @@ page_title
       {{ form.country }}
     </div>
     
-    <div class="mb-5 ml-48 -mr-20">
+    <div class=" flex flex-row mb-5 ml-48 -mr-20">
       <label for="{{ form.city.id_for_label }}" class="w-48  pt-4 pr-32 font-extralight text-lg px-5 focus:outline-none">City:</label>
       <span class="mr-56 ">{{ form.city }}</span>
     </div>
     
-    <div class="mb-5 ml-10 ">
+    <div class="mb-5 ml-16 flex flex-row ">
       <label for="{{ form.address.id_for_label }}" class="w-48  pt-4 pr-28 ml-5 font-extralight text-lg px-5 focus:outline-none">Address:</label>
       <span class="mr-8">{{ form.address }}</span>
     </div>
     
-    <div class="mb-5 ml-12">
+    <div class="mb-5 ml-12 flex flex-row">
       <label for="{{ form.price.id_for_label }}" class="w-48  pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Price:</label>
       {{form.price }}
     </div>
     
-    <div class="mb-5 ml-10">
+    <div class="mb-5 ml-10 flex flex-row">
       <label for="{{ form.guest.id_for_label }}" class="w-48  pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Guest:</label>
       <span class="">{{ form.guest }}</span>
     </div>
     
-    <div class="mb-5 ml-12">
+    <div class="mb-5 ml-12 flex flex-row">
       <label for="{{ form.beds.id_for_label }}" class="w-48 pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Beds:</label>
       {{ form.beds }}
     </div>
     
-    <div class="mb-5 ml-4">
+    <div class="mb-5 ml-4 flex ">
       <label for="{{ form.bedrooms.id_for_label }}" class="w-48 pt-4 pr-52 ml-6  font-extralight text-lg px-5 focus:outline-none">Bedrooms:</label>
-      <span class="-ml-20">{{ form.bedrooms }}</span>
+      <span class="">{{ form.bedrooms }}</span>
     </div>
     
-    <div class="mb-5 ml-10">
+    <div class="mb-5 ml-12 flex flex-row">
       <label for="{{ form.baths.id_for_label }}" class="w-48 pt-4 pr-36 ml-5 font-extralight text-lg px-5 focus:outline-none">Baths:</label>
       {{ form.baths }}
     </div>
     
-    <div class="flex mb-4 ml-1">
+    <div class="flex mb-4 ml-1 flex-row">
       <label for="{{ form.check_in.id_for_label }}"class="ml-72 w-56 pt-4 pr-24 font-extralight text-lg px-5 focus:outline-none">Check-In:</label>
       {{ form.check_in }}
       <span class="mt-1 pt-1 w-60 h-8 block  font-extralight text-sm focus:outline-none">hrs:min:Sec</span>
     </div>
 
-    <div class="flex mb-4 ml-1">
+    <div class="flex mb-4 ml-1 flex-row">
       <label for="{{ form.check_out.id_for_label }}"class="ml-72 w-56 pt-4 pr-24 font-extralight text-lg px-5 focus:outline-none">Check-Out:</label>
       {{ form.check_out }}
       <span class="mt-1 pt-1 w-60 h-8 block  font-extralight text-sm focus:outline-none">hrs:min:sec</span>
     </div>
     
-    <div class="mb-5 -ml-72 ">
+    <div class="mb-5 -ml-56 flex flex-row ">
       <label for="{{ form.instant_book.id_for_label }}" class="w-48 pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Instant Book:</label>
       {{ form.instant_book }}
     </div>
     
-    <div class="mb-5 ml-16 ">
+    <div class="mb-5 ml-16 flex flex-row ">
       <label for="{{ form.host.id_for_label }}" class="w-48 pt-4 pr-36 font-extralight text-lg focus:outline-none">Host:</label>
       {{ form.host }}
     </div>
     
-    <div class="mb-5 mr-5">
+    <div class="mb-5 mr-5 pb-16">
       <label for="{{ form.room_type.id_for_label }}" class="w-48 pt-4 pr-72 font-extralight text-lg focus:outline-none">Room Type:</label>
       <span class="mr-10 -ml-48">{{ form.room_type }}</span>
     </div>
-    
-    <div class="mb-5">
-      <label for="{{ form.amenities.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Amenities:</label>
-      {{ form.amenities }}
-    </div>
-    
-    <div class="mb-2">
-      <label for="{{ form.facilities.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Facilities:</label>
-      {{ form.facilities }}
-    </div>
-    
-    <div class="mb-2">
-      <label for="{{ form.house_rules.id_for_label }}" class="w-48  pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">House Rules:</label>
-      {{ form.house_rules }}
-    </div>
 
+    <div class="flex flex-row">
+     <fieldset class="mb-10 mr-20">
+      <legend class="text-xl font-extralight mb-2">Amenities:</legend>
+      {% for choice in form.amenities.field.choices %}
+        <label class="inline-flex items-center">
+          <input type="checkbox" name="{{ form.amenities.name }}" value="{{ choice.0 }}"
+            {% if choice.0 in form.amenities.value %} checked {% endif %}>
+          <span class="ml-2 font-light">{{ choice.1 }}</span>
+        </label><br>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset class="mb-10 mr-24 ml-10">
+      <legend class="text-xl font-extralight mb-2">Facilities:</legend>
+      {% for choice in form.facilities.field.choices %}
+        <label class="inline-flex items-center">
+          <input type="checkbox" name="{{ form.facilities.name }}" value="{{ choice.0 }}"
+            {% if choice.0 in form.facilities.value %} checked {% endif %}>
+          <span class="ml-2 font-light">{{ choice.1 }}</span>
+        </label><br>
+      {% endfor %}
+    </fieldset>
+
+    <fieldset class="mb-10 ml-10 -mr-20">
+      <legend class="text-xl font-extralight mb-2">House Rules:</legend>
+      {% for choice in form.house_rules.field.choices %}
+        <label class="inline-flex items-center">
+          <input type="checkbox" name="{{ form.house_rules.name }}" value="{{ choice.0 }}"
+            {% if choice.0 in form.house_rules.value %} checked {% endif %}>
+          <span class="ml-2 font-light">{{ choice.1 }}</span>
+        </label><br>
+      {% endfor %}
+    </fieldset>
+    </div>
     <style>
       input[type="text"] {
         height: 44px;
