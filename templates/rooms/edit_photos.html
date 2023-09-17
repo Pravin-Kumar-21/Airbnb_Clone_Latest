@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block page_name %}
+    Photos|{{room.name}}
+{% endblock page_name %}
+  
+
+{% block content %}
+    <div class="container w-4/5 mx-auto my-3 flex flex-col  ">
+
+        {% for photo in room.photos.all %}
+        <div class="mb-5 border pt-5 rounded-md border-gray-50 bg-gray-50 flex justify-between " >
+            <div class="flex items-start">
+                <img src= "{{photo.file.url}}" class="w-32 h-32 rounded-md"/>
+                <spa class="ml-10 text-base mt-10 font-light">{{photo.caption}}</span>
+            </div>
+            <div class="flex flex-col w-36  ">
+                <a class="text-center mb-5 block py-2 rounded-lg font-light text-base w-full text-white bg-green-400 hover:bg-green-500" href="#">Edit</a>
+                <a class="text-center mb-5 block py-2 rounded-lg font-light text-base w-full text-white bg-red-400 hover:bg-red-500" href="#">Delete</a>
+            </div>
+        </div>
+        {% endfor %}
+        
+    </div>
+
+    
+{% endblock content %}
+    

@@ -1,4 +1,7 @@
+from typing import Any
+from django.db import models
 from django.views.generic import ListView, DetailView, View, UpdateView
+from django.http import Http404
 from django.shortcuts import render
 from django.core.paginator import Paginator
 from django_countries import countries
@@ -108,5 +111,16 @@ class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
 
     def get_object(self, queryset=None):
         room = super().get_object(queryset=queryset)
-        print(room)
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
+        return room
+
+
+class RoomPhotosView(user_mixins.LoggedInOnlyView, RoomDetail):
+    template_name = "rooms/edit_photos.html"
+
+    def get_object(self, queryset=None):
+        room = super().get_object(queryset=queryset)
+        if room.host.pk != self.request.user.pk:
+            raise Http404()
         return room

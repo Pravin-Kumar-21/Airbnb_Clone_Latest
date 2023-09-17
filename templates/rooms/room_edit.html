@@ -2,7 +2,11 @@
 
 {% block search-bar %}
 {% endblock search-bar %}
-page_title
+
+{% block page_name %}
+    Edit|{{room.name}}
+{% endblock page_name %}
+  
     
 {% block content %}
 <div class="mx-auto my-auto">
@@ -12,10 +16,12 @@ page_title
     {% csrf_token %}
   <div class="container w-3/5 mx-auto my-10 bg-gray-50 pr-40 flex flex-col items-center rounded-sm border p-6 border-gray-100">    
     <div class="mb-5 flex font-light ">
-      <label for="{{ form.name.id_for_label }}" class="w-48 pt-4 ml-5 font-extralight text-lg px-5 focus:outline-none">Name</label>
+      <label for="{{ form.name.id_for_label }}" class="w-48 pt-4 ml-52 font-extralight text-lg px-5 focus:outline-none">Name</label>
       <span>{{ form.name }}</span>
-    </div>
-    
+      <div class="pt-2">
+       <a href="{% url 'rooms:photos' room.pk %}" class="text-green-300 ml-24 font-normal hover:text-green-500">Edit Photos ?</a>
+      </div>
+    </div>  
     <div class="mb-5 ml-44 flex">
       <label for="{{ form.description.id_for_label }}" class="w-48 pt-4 ml-5 font-extralight text-lg px-5 focus:outline-none">Description:</label>
       <span>{{ form.description }}</span>
