@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block page_name %}
+    Edit Photo|{{room.name}}
+{% endblock page_name %}
+
+{% block content %}
+    <form method="post">
+        {% csrf_token %}
+    <div class="container w-3/5 mx-auto my-auto bg-gray-50  flex flex-row items-center rounded-md border py-5 pb-8 border-gray-100">    
+        <label for="{{ form.caption.id_for_label }}" class="w-48 pt-4 ml-2 mr-40 text-center font-extralight text-base px-5 ">Change Room Name</label>
+        <span class="pt-3 font-light text-sm">{{ form.caption }}</span>
+    </div>
+        <div class="text-center">
+        <button type="submit" class=" mt-16  py-3 px-8 bg-red-400 hover:bg-red-500 bg-center text-white font-light text-center rounded">
+            Save Changes
+        </button>
+        </div>
+    <style>
+      input[type="text"] {
+        height: 44px;
+        border-radius: 4px;
+      }
+    </style>
+    </form>
+        
+{% endblock content %}
+     

@@ -143,3 +143,7 @@ EMAIL_PORT = "587"
 EMAIL_HOST_USER = os.environ.get("BREVO_USERNAME")
 EMAIL_HOST_PASSWORD = os.environ.get("BREVO_PASSWORD")
 EMAIL_FROM = "airbnb.clone.pravin@gmail.com"
+
+# Auth
+
+LOGIN_URL = "users/login/"
