@@ -1,7 +1,16 @@
 from typing import Any
 from django.db import models
+from django.forms.forms import BaseForm
 from django.forms.models import BaseModelForm
-from django.views.generic import ListView, DetailView, View, UpdateView
+from django.http.response import HttpResponse
+from django.views.generic import (
+    ListView,
+    DetailView,
+    View,
+    CreateView,
+    UpdateView,
+    FormView,
+)
 from django.http import Http404, HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse
@@ -159,3 +168,19 @@ class EditPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, UpdateVie
     def get_success_url(self):
         room_pk = self.kwargs.get("room_pk")
         return reverse("rooms:photos", kwargs={"pk": room_pk})
+
+
+class AddPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, FormView):
+    model = models.Photo
+    template_name = "rooms/photo_create.html"
+    fields = (
+        "caption",
+        "file",
+    )
+    form_class = forms.CreatePhotoForm
+    success_message = "Photo Uploaded"
+
+    def form_valid(self, form):
+        pk = self.kwargs.get("pk")
+        form.save(pk)
+        return redirect(reverse("rooms:photos", kwargs={"pk": pk}))

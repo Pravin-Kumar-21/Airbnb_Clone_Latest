@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block page_name %}
+    Upload's|{{room.name}}
+{% endblock page_name %}
+
+{% block content %}
+<div class="mb-10">
+<div class="ml-3 mr-3">
+<h1 class="text-lg block my-3 mx-64 py-3  border rounded-md bg-red-400 text-center  text-white font-normal mb-4">Upload Photo</h1>
+</div>
+<div class="container w-3/5 mx-auto mt-8 shadow-md pb-5 mb-10 bg-gray-50">
+    
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Display form errors, if any -->
+        {% if form.errors %}
+        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-2 mb-4 rounded">
+            <strong>Error:</strong>
+            <ul>
+                {% for error in form.non_field_errors %}
+                    <li>{{ error }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="flex flex-row pt-10 pb-10">
+            <!-- Caption Field -->
+            <div class="mb-4 mr-16 flex flex-row ml-4">
+                <label for="{{ form.caption.id_for_label }}" class="block text-gray-500 mr-4 font-light">Caption:</label>
+                <span class="-mt-3 text-center hover:shadow-sm">{{ form.caption }}</span>
+            </div>
+            
+            <!-- File Field -->
+            <div class="mb-4 flex flex-row ml-20">
+                <label for="{{ form.file.id_for_label }}" class="block text-gray-500 mr-4 font-light">File:</label>
+                <span class="-mt-1 ">{{ form.file }}</span>
+            </div>
+        </div>
+
+        <button type="submit" class="bg-red-400 text-white block ml-80 rounded-md text-center px-4 py-2 hover:bg-red-500 hover:shadow-lg">Upload Photo</button>
+        </div>
+        <style>
+            input[type="text"] {
+                height: 44px;
+                border-radius: 4px;
+                background-color: rgb(240, 241, 242);
+            }
+        </style>
+    </form>
+</div>
+</div>
+{% endblock %}
