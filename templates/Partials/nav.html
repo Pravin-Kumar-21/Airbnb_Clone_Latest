@@ -1,11 +1,27 @@
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
 <ul class="flex items-center text-sm font-medium h-full">
     {% if user.is_authenticated %}
-        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a href="{{user.get_absolute_url}}">Your Profile</a></li>
-        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a href="{% url "users:logout" %}">Log Out</a></li>
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center">
+            <a href="{% url 'users:switch_hosting' %}">
+                
+                {% if request.session.is_hosting %}
+                    <i class="fa-solid fa-stop"></i>&nbsp;Stop hosting 
+                {% else %}
+                    <i class="fa-solid fa-play"></i>&nbsp;Start hosting
+                {% endif %}
+                    
+            </a>
+        </li>
+        
+        {% if request.session.is_hosting %}
+            <li class="ml-8 border-b-2 border-white hover:border-gray-600 hover:shadow-sm px-2 h-full flex items-center"><a href="{% url 'rooms:create_room' %}"><i class="fa-solid fa-plus py-px"></i>&nbsp;&nbsp;Add Room</a></li>
+        {% endif %}
+               
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 hover:shadow-sm px-2 h-full flex items-center"><a href="{{user.get_absolute_url}}"><i class="fa-solid fa-user py-px"></i>&nbsp;&nbsp;Your Profile</a></li>
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a href="{% url "users:logout" %}">Log Out <i class="fa-solid fa-right-from-bracket "></i></a></li>
     {% else %}
-        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a class="py-10 px-5" href=" {% url "users:login" %} ">Login</a></li>
-        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a class="py-10 px-5" href=" {% url "users:signup" %} ">SignUp</a></li>
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a class="py-10 px-5" href=" {% url "users:login" %} "><i class="fa-solid fa-right-to-bracket"></i>&nbsp;Login</a></li>
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a class="py-10 px-5" href=" {% url "users:signup" %} "><i class="fa-solid fa-user-plus"></i>&nbsp;&nbsp;SignUp</a></li>
     {% endif %}
 </ul>
      

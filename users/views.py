@@ -7,6 +7,7 @@ from django.views.generic import FormView, DetailView, UpdateView
 from django.views import View
 from . import forms, models
 from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 import os
 import requests
 from django.contrib import messages
@@ -240,3 +241,12 @@ class UpdatePasswordView(
 ):
     template_name = "users/update-password.html"
     success_url = reverse_lazy("core:home")
+
+
+@login_required
+def switch_hosting(request):
+    try:
+        del request.session["is_hosting"]
+    except KeyError:
+        request.session["is_hosting"] = True
+    return redirect(reverse("core:home"))

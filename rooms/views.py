@@ -184,3 +184,36 @@ class AddPhotoView(user_mixins.LoggedInOnlyView, SuccessMessageMixin, FormView):
         pk = self.kwargs.get("pk")
         form.save(pk)
         return redirect(reverse("rooms:photos", kwargs={"pk": pk}))
+
+
+class CreateRoomView(FormView):
+    form_class = forms.CreateRoomForm
+    template_name = "rooms/create_rooms.html"
+    fields = (
+        "name",
+        "description",
+        "country",
+        "city",
+        "price",
+        "address",
+        "guest",
+        "beds",
+        "bedrooms",
+        "baths",
+        "check_in",
+        "check_out",
+        "instant_book",
+        "room_type",
+        "amenities",
+        "facilities",
+        "house_rules",
+    )
+
+    def form_valid(self, form):
+        # Create a room instance but don't save it yet
+        room = form.save(user=self.request.user)
+        # Associate the room with the currently logged-in user
+        room.host = self.request.user
+        room.save()  # Save the room to the database
+        messages.success(self.request, "Room created successfully")
+        return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))

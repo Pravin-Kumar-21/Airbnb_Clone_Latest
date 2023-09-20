@@ -4,23 +4,20 @@
 {% endblock search-bar %}
 
 {% block page_name %}
-    Edit|{{room.name}}
+    Add|Room
 {% endblock page_name %}
   
     
 {% block content %}
 <div class="px-40 -mb-5 ">
-  <h1 class="text-center mt-10 bg-red-400 text-white font-normal text-base mx-96 py-3 px-3 rounded-md">Edit Room</h1>
+  <h1 class="text-center mt-10 bg-red-400 text-white font-normal text-base mx-96 py-3 px-3 rounded-md">Create Room</h1>
 </div>
-  <form method="post">
+  <form method="post" >
     {% csrf_token %}
   <div class="container w-3/5 mx-auto my-10 bg-gray-50 pr-40 flex flex-col items-center rounded-sm border p-6 border-gray-100">    
     <div class="mb-5 ml-3 flex flex-row font-light ">
       <label for="{{ form.name.id_for_label }}" class="w-48 pt-4 ml-44 font-extralight text-lg px-5 focus:outline-none">Name</label>
       <span>{{ form.name }}</span>
-      <div class="pt-3 flex flex-row">
-       <a href="{% url 'rooms:photos' room.pk %}" class="text-green-300 ml-16 font-normal hover:text-green-500">Edit Photos ?</a>
-      </div>
     </div>  
     <div class="mb-5 ml-44 flex">
       <label for="{{ form.description.id_for_label }}" class="w-48 pt-4 ml-5 font-extralight text-lg px-5 focus:outline-none">Description:</label>
@@ -83,6 +80,7 @@
       <label for="{{ form.instant_book.id_for_label }}" class="w-48 pt-4  ml-5 font-extralight text-lg px-5 focus:outline-none">Instant Book:</label>
       {{ form.instant_book }}
     </div>
+    
     <div class="mb-5 mr-5 pb-16">
       <label for="{{ form.room_type.id_for_label }}" class="w-48 pt-4 pr-72 font-extralight text-lg focus:outline-none">Room Type:</label>
       <span class="mr-10 -ml-48">{{ form.room_type }}</span>
@@ -130,7 +128,7 @@
     </style>
 
     <button type="submit" class="mt-10 bg-red-400 hover:bg-red-500 text-white font-light py-4 ml-16 px-4 rounded">
-      Save Changes
+      Create Room 
     </button>
     </div>
   </form>
