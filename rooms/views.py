@@ -125,8 +125,6 @@ class EditRoomView(user_mixins.LoggedInOnlyView, UpdateView):
 
     def get_object(self, queryset=None):
         room = super().get_object(queryset=queryset)
-        if room.host.pk != self.request.user.pk:
-            raise Http404()
         return room
 
 
@@ -215,5 +213,6 @@ class CreateRoomView(FormView):
         # Associate the room with the currently logged-in user
         room.host = self.request.user
         room.save()  # Save the room to the database
+        form.save_m2m()
         messages.success(self.request, "Room created successfully")
         return redirect(reverse("rooms:detail", kwargs={"pk": room.pk}))
