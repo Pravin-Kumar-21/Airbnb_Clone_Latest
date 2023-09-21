@@ -97,6 +97,13 @@
             
             {% if room.host == user %}
                 <a href="{% url 'rooms:edit' room.pk %}" class="text-center  px-8 py-3 rounded-lg font-light text-lg w-full text-white bg-red-400 hover:bg-red-500 block">Edit Room</a>
+            {% else %}
+                
+                {% if not request.session.is_hosting %}
+                    {{room.get_calendars}}   
+                {% endif %}
+                    
+
             {% endif %}
                 
         </div>

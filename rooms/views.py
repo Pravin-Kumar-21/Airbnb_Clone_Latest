@@ -21,6 +21,7 @@ from users import mixins as user_mixins
 from django.contrib.messages.views import SuccessMessageMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from res_cal import Calendar
 
 
 class HomeView(ListView):
