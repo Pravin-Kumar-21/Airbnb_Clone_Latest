@@ -112,10 +112,10 @@
                         <div class="grid grid-cols-7 gap-10 justify-items-center">
                             
                             {% for day  in calendar.get_days %}
-                            {% if day != 0 %}
-                                    <span>{{day}}</span>
+                            {% if day.number != 0  %}
+                                    <span class="bg-gray-200 w-10 py-2 hover:bg-green-200 rounded-sm shadow-md text-center ">{{day}}</span>
                             {% else %}
-                                <span ></span>
+                                <span></span>
                             {% endif %}    
                             {% endfor %}
                                 
