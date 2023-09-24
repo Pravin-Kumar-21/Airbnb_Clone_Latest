@@ -1,15 +1,16 @@
 {% extends "base.html" %} 
+{% load is_booked %}
 {% block page_name %} 
     {{room.name}} 
 {% endblock page_name %} 
 
 {% block content %}
-    <div class="-mt-5 container max-w-full h-96 flex mb-10">
-        <div class="h-full w-1/2 bg-cover bg-center" style="background-image: url({{room.first_photo}});"></div>
+    <div class="-mt-5  container max-w-full h-96 flex mb-16">
+        <div class="h-full w-1/2 bg-cover hover:bg-gray-50 hover:shadow-2xl bg-center transition-shadow" style="background-image: url({{room.first_photo}});"></div>
         <div class="h-full w-1/2 flex flex-wrap">
            
            {% for photo in room.get_next_four_photos %}
-                <div style="background-image: url({{photo.file.url}})" class=" border border-gray-300 w-1/2 h-auto bg-cover bg-center"></div>
+                <div style="background-image: url({{photo.file.url}})" class=" border  hover:bg-gray-50 hover:shadow-2xl border-gray-300 w-1/2 h-auto bg-cover bg-center transition-shadow"></div>
            {% endfor %}
              
         </div>    
@@ -112,12 +113,14 @@
                         <div class="grid grid-cols-7 gap-10 justify-items-center">
                             
                             {% for day  in calendar.get_days %}
+                            {% is_booked room day as is_booked_bool %}
                             {% if day.number != 0  %}
-                                    
                                     {% if day.past %}
-                                        <span class="bg-gray-50 w-10 py-2 rounded-sm shadow-sm text-center ">{{day}}</span>
+                                        <span class="bg-gray-50 w-9 py-2 hover:bg-green-300 rounded-sm shadow-sm text-center ">{{day}}</span>
+                                        {% elif is_booked_bool %}
+                                            <span class="bg-gray-50 py-2 w-9 hover:bg-green-300  rounded-sm shadow-md text-center line-through ">{{day}}</span>
                                     {% else %}
-                                        <span class="bg-gray-200 w-10 py-2 hover:bg-green-300 rounded-sm shadow-md text-center ">{{day}}</span>
+                                        <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}" class="bg-gray-200 w-9 py-2 hover:bg-green-300 rounded-sm shadow-md text-center">{{day}}</a>
                                     {% endif %}
                             {% else %}
                                 <span></span>

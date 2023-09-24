@@ -26,8 +26,6 @@ class RoomType(AbstractItem):
         verbose_name = "Room Type"
         ordering = ["name"]
 
-    pass
-
     def __str__(self):
         return self.name
 
@@ -129,9 +127,10 @@ class Room(core_models.TimeStampedModel):
         now = timezone.now()
         this_year = now.year
         this_month = now.month
+        next_month = this_month + 1
         if this_month == 12:
             next_month = 1
 
-        this_month = Calendar(2023, 9)
-        next_month = Calendar(2023, 10)
+        this_month = Calendar(this_year, this_month)
+        next_month = Calendar(this_year, next_month)
         return [this_month, next_month]
