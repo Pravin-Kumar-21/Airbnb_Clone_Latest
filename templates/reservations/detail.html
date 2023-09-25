@@ -11,9 +11,34 @@
 {% block content %}
 
     <div class="container mx-auto my-10 flex flex-col  ">
-        <div class="bg-cover bg-center h-56 rounded-t-lg" style="background-image: url({{reservation.room.first_photo}});">
-            <div class="text-base align-text-bottom">{{reservation.check_in}}</div>
-        </div>
+        <div class="bg-cover bg-center h-56 rounded-t-lg" style="background-image: url({{reservation.room.first_photo}});"></div>
+            <div class="flex flex-col">
+                <div class="py-8 px-5 text-base font-light ">{{reservation.check_in}} - {{reservation.check_out}} <span>{{reservation.status}}</span></div>
+                <span class="text-lg">
+                    {{reservation.room.name}}
+                </span>
+                </div>
+            <div class="my-5">
+                <div>
+                    <a href="{{reservation.room.host.get_absolute_url}}">
+                        {% if user_obj.avatar %}
+                            <div class="h-12 w-12 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
+                        {% else %}
+                            <div class="h-12 w-12  ml-4 bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
+                                <span>{{reservation.room.host.first_name|first}}</span>
+                                {% endif %}
+                            </div>        
+                            <span class="w-full font-extralight mt-3 text-center text-sm text-black">{{room.host.first_name}}&nbsp;{{room.host.last_name}}</span>    
+                    </a>
+                </div>
+                <div class="my-5 flex flex-row">
+                    <span class="text-gray-600 mr-16 text-lg font-semibold">Contact your Airbnb Host</span>
+                    <a href="#" class="block text-center py-2 w-36 rounded-lg font-light text-lg -mt-2 text-white bg-red-500">Send a Message</a>
+                </div>
+                <div class="my-5">
+                    <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-lg  text-white bg-red-500">Cancel Reservation</a>
+                </div>
+            </div>
     </div>
 {% endblock content %}
     

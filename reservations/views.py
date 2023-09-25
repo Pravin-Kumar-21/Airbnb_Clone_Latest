@@ -6,6 +6,9 @@ from django.contrib import messages
 from django.urls import reverse
 from . import models
 from django.http import Http404
+from users import models as user_model
+from django.views.generic import FormView, DetailView, UpdateView
+from users import models as user_models
 
 
 class CreateError(Exception):
@@ -40,6 +43,14 @@ class ReservationDetailView(View):
             and reservation.room.host != self.request.user
         ):
             raise Http404()
+        user_obj = reservation.room.host
         return render(
-            self.request, "reservations/detail.html", {"reservation": reservation}
+            self.request,
+            "reservations/detail.html",
+            {"reservation": reservation, "user_obj": user_obj},
         )
+
+
+class UserProfileView(DetailView):
+    model = user_models.User
+    context_object_name = "user_obj"

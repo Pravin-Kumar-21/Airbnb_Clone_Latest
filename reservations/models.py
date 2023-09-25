@@ -4,6 +4,8 @@ from django.db import models
 from core import models as core_models
 from django.utils import timezone
 from . import managers
+from django.urls import reverse
+from django.shortcuts import redirect
 
 
 class BookedDay(models.Model):
@@ -74,3 +76,6 @@ class Reservation(core_models.TimeStampedModel):
                     BookedDay.objects.create(day=day, reservation=self)
                 return
         return super().save(*args, **kwargs)
+
+    def get_absolute_url(self):
+        return reverse("rooms:detail", kwargs={"pk": self.pk})
