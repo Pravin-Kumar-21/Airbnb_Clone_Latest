@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block search-bar %}
+{% endblock search-bar %}
+
+{% block page_name %}
+    Reservation|{{reservation.check_in}}
+{% endblock page_name %}
+  
+
+{% block content %}
+
+    <div class="container mx-auto my-10 flex flex-col  ">
+        <div class="bg-cover bg-center h-56 rounded-t-lg" style="background-image: url({{reservation.room.first_photo}});">
+            <div class="text-base align-text-bottom">{{reservation.check_in}}</div>
+        </div>
+    </div>
+{% endblock content %}
+    
