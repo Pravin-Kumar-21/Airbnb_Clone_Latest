@@ -23,36 +23,36 @@
                 </span>
                 <span class="container w-full  text-center py-4  border-t font-light text-gray-500"></span>
                 </div>
-            <div class=" flex flex-row my-5">
+            <div class=" flex flex-col my-5">
                 <div class="ml-12">
-                <div class="flex flex-row mr-24 ">
-                    <a href="{{reservation.room.host.get_absolute_url}}">
-                        {% if user_obj.avatar %}
-                            <div class="h-12 w-12 mb-2 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
-                        {% else %}
-                            <div class="h-12 w-12 mb-2 ml-4 bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
-                                <span>{{reservation.room.host.first_name|first}}</span>
-                                {% endif %}
-                            </div>        
-                            <span class="w-full font-extralight mt-6 -ml-2  text-center text-sm text-black">{{reservation.room.host.first_name}}&nbsp;{{reservation.room.host.last_name}}</span>
-                    </a>
-                </div>
-                <div class="my-4 flex flex-col">
-                    <span class="text-gray-600 mb-2 text-base font-normal">Contact Your Host</span>
-                    <a href="#" class="block mb-3 -mt-3 -ml-3 pb-2 text-center w-36 rounded-lg font-light text-sm  text-green-400">Send a Message<i class="fa-solid fa-message ml-2 mt-3"></i></a>
-                </div>
+                    <div class=" mr-24 ">
+                        <a href="{{reservation.room.host.get_absolute_url}}">
+                            {% if user_obj.avatar %}
+                                <div class="h-12 w-12 mb-2 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
+                            {% else %}
+                                <div class="h-12 w-12 mb-2  bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
+                                    <span>{{reservation.room.host.first_name|first}}</span>
+                                    {% endif %}
+                                </div>        
+                                <span class="w-full font-extralight mt-6 -ml-2  text-center text-sm text-black">{{reservation.room.host.first_name}}&nbsp;{{reservation.room.host.last_name}}</span>
+                        </a>
+                                <div class="my-4 -ml-4  flex flex-row">
+                                    <span class="text-gray-500 mb-2 text-base mr-4 font-light">Contact Your Host: </span>
+                                    <a href="#" class="block mb-3 -mt-2 -pt-1  pb-3 text-center w-36 bg-green-50 rounded-lg font-light text-sm  text-green-400">Send a Message<i class="fa-solid fa-message ml-2 mt-3"></i></a>
+                                </div>
+                    </div>
                 </div>
                 <div class="my-5 mx-4 ">
                     {% if reservation.status == 'pending'  %}
-                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
-                    {% endif %}
-                    
-                    {% if reservation.room.host == user   %}
-                        <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base mb4 text-white bg-red-500">Confirm Reservation</a>
-                    {% endif %}
+                            <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
+                            {% endif %}
+                            
+                        {% if reservation.room.host == user   %}
+                            <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base mb4 text-white bg-red-500">Confirm Reservation</a>
+                        {% endif %}
                         
                 </div>
-            </div>
+        </div>
     </div>
 {% endblock content %}
     
