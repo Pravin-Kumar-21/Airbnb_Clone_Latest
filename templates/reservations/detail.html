@@ -13,11 +13,13 @@
     <div class="container w-4/5 border mx-auto my-4 flex flex-col  ">
         <div class="bg-cover bg-center h-96 rounded-b-lg" style="background-image: url({{reservation.room.first_photo}});"></div>
             <div class="flex flex-col">
-                <div class="py-8 px-5 text-base font-light ">{{reservation.check_in}} - {{reservation.check_out}} <span class="ml-4 text-sm font-semibold">{{reservation.status|title}}</span></div>
+                <div class="py-8 px-5 text-base font-light ">{{reservation.check_in}} - {{reservation.check_out}} <span class="ml-4 font-semibold {% if reservation.status == 'pending'%} text-yellow-500 {% elif reservation.status == 'cancelled' %} text-red-600 {% else %}text-green-600{%endif%}">{{reservation.get_status_display}}</span></div>
                 <span class="container w-full  text-center py-4  border-t font-light text-gray-500"></span>
                 <span class="text-lg mb-8 ml-4">
                     {{reservation.room.name}}<br>
-                    <span class="text-sm ">{{reservation.room.address}}</span>
+                    <span class="text-sm font-light">{{reservation.room.address}}</span><br>
+                    <span class="text-sm font-extralight">{{reservation.room.city}},</span>
+                    <span class="text-sm font-extralight">{{reservation.room.country}}</span>
                 </span>
                 <span class="container w-full  text-center py-4  border-t font-light text-gray-500"></span>
                 </div>
@@ -40,8 +42,15 @@
                     <a href="#" class="block mb-3 -mt-3 -ml-3 pb-2 text-center w-36 rounded-lg font-light text-sm  text-green-400">Send a Message<i class="fa-solid fa-message ml-2 mt-3"></i></a>
                 </div>
                 </div>
-                <div class="my-5 mx-4">
-                    <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
+                <div class="my-5 mx-4 ">
+                    {% if reservation.status == 'pending'  %}
+                        <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-base mb-4 text-white bg-red-500">Cancel Reservation</a>
+                    {% endif %}
+                    
+                    {% if reservation.room.host == user   %}
+                        <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Confirm Reservation</a>
+                    {% endif %}
+                        
                 </div>
             </div>
     </div>
