@@ -44,11 +44,11 @@
                 </div>
                 <div class="my-5 mx-4 ">
                     {% if reservation.status == 'pending'  %}
-                        <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-base mb-4 text-white bg-red-500">Cancel Reservation</a>
+                        <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
                     {% endif %}
                     
                     {% if reservation.room.host == user   %}
-                        <a href="#" class="block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Confirm Reservation</a>
+                        <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base mb4 text-white bg-red-500">Confirm Reservation</a>
                     {% endif %}
                         
                 </div>

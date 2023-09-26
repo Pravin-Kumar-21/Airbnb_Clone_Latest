@@ -1,13 +1,11 @@
 import datetime
-from django.views.generic import View
-from rooms import models as room_models
-from django.shortcuts import render, redirect
-from django.contrib import messages
-from django.urls import reverse
-from . import models
+from django.contrib.auth.decorators import login_required
 from django.http import Http404
-from users import models as user_model
-from django.views.generic import FormView, DetailView, UpdateView
+from django.views.generic import View, DetailView
+from django.contrib import messages
+from django.shortcuts import render, redirect, reverse
+from rooms import models as room_models
+from . import models
 from users import models as user_models
 
 
@@ -54,3 +52,18 @@ class ReservationDetailView(View):
 class UserProfileView(DetailView):
     model = user_models.User
     context_object_name = "user_obj"
+
+
+def edit_reservation(request, pk, verb):
+    reservation = models.Reservation.objects.get_or_none(pk=pk)
+    if not reservation or (
+        reservation.guest != request.user and reservation.room.host != request.user
+    ):
+        raise Http404()
+    if verb == "confirm":
+        reservation.status = models.Reservation.STATUS_CONFIRMED
+    elif verb == "cancel":
+        reservation.status = models.Reservation.STATUS_CANCELED
+    reservation.save()
+    messages.success(request, "Reservation Updated")
+    return redirect(reverse("reservations:detail", kwargs={"pk": reservation.pk}))
