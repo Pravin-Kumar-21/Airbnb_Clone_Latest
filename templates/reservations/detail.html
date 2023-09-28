@@ -45,19 +45,52 @@
                 <div class="my-5 mx-4 ">
                 {% if reservation.status != 'cancelled' %}
                     {% if reservation.status == 'confirmed' and reservation.is_finished %}
-                        <span class="font-medium text-2xl text-center w-full block mb-5">Write your review</span>
+                        <span class="text-xl px-4 py-4 font-extralight ml-10 mt-24 -mb-8 shadow text-center bg-green-300 w-56 transition-shadow block "><i class="fa-solid fa-star font-extralight">&nbsp;</i>Rate & Review</span>
+                        <form action="{% url 'reviews:create' reservation.room.pk %}"  class="flex flex-col text-base font-light" method="post">
+                            {% csrf_token %}
+                            <span class="flex flex-col pt-28 ml-12">{{form}}</span>
+                            <button class="bg-red-400 w-40 ml-10 mt-5 py-3 px-2">Submit </button>
+                        </form>
                     {% else %}
                         <div class="my-5 mx-4 ">
                             {% if reservation.status == 'pending'  %}
-                                    <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class=" mb-4 block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
-                                    {% if reservation.room.host != user   %}
+                                <a href="{% url 'reservations:edit' reservation.pk 'cancel' %}" class=" mb-4 block text-center py-2 w-44 rounded-lg font-light text-base  text-white bg-red-500">Cancel Reservation</a>
+                                    {% if reservation.room.host == user    %}
                                     <a href="{% url 'reservations:edit' reservation.pk 'confirm' %}" class="block text-center py-2 w-44 rounded-lg font-light text-base mb4 text-white bg-red-500">Confirm Reservation</a>
                                     {% endif %}
                         </div>  
                             {% endif %}
                     {% endif %}
                 {% endif %}
+                <style>
+                    input[type="number"]
+                {
+                height: 40px;
+                width: 100px;
+                border-radius: 4px;
+                border-width: 1px;
+                align-items:center;
+                display: flex;
+                margin-left: 200px;
+                margin-bottom: 40px;
+                margin-top: -30px;
+                }
+                </style>
+                <style>
+                textarea{
+                    height: 100px;
+                    border-radius: 4px;
+                    width: 400px;
+                    margin-left: 200px;
+                    margin-bottom: 30px;
+                    margin-top: -56px;
+                    background-color: rgb(246, 246, 244);
+                    border-width: 2px;
+                }
+                </style>
+
             </div>
         </div>
+
     </div>
     {% endblock content %}

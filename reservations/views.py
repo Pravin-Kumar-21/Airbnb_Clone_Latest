@@ -7,6 +7,7 @@ from django.shortcuts import render, redirect, reverse
 from rooms import models as room_models
 from . import models
 from users import models as user_models
+from reviews import forms as review_forms
 
 
 class CreateError(Exception):
@@ -42,10 +43,11 @@ class ReservationDetailView(View):
         ):
             raise Http404()
         user_obj = reservation.room.host
+        form = review_forms.CreateReviewForm()
         return render(
             self.request,
             "reservations/detail.html",
-            {"reservation": reservation, "user_obj": user_obj},
+            {"reservation": reservation, "user_obj": user_obj, "form": form},
         )
 
 
