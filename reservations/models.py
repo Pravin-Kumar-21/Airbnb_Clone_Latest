@@ -3,7 +3,7 @@ from datetime import datetime, timedelta
 from django.db import models
 from core import models as core_models
 from django.utils import timezone
-from . import managers
+from core import managers
 from django.urls import reverse
 from django.shortcuts import redirect
 
@@ -44,7 +44,6 @@ class Reservation(core_models.TimeStampedModel):
     room = models.ForeignKey(
         "rooms.Room", related_name="reservations", on_delete=models.CASCADE
     )
-    objects = managers.CustomReservationManager()
 
     def __str__(self):
         return f"{self.room} - {self.check_in}"

@@ -8,6 +8,7 @@ from rooms import models as room_models
 from . import models
 from users import models as user_models
 from reviews import forms as review_forms
+from core import managers
 
 
 class CreateError(Exception):
