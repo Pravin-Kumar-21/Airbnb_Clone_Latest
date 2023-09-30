@@ -1,5 +1,5 @@
 {% extends "base.html" %} 
-{% load is_booked %}
+{% load is_booked user_fav  %}
 {% block page_name %} 
     {{room.name}} 
 {% endblock page_name %} 
@@ -20,20 +20,30 @@
         <div class="w-1/2" >
             <div class="flex justify-between">
                 <div class="mb-5">
-                    <h4 class="text-xl font-normal mb-px">{{room.name}}</h4>
-                    <span class="text-gray-700 font-light" >{{room.city}}</span>
+                    <h4 class="text-xl font-normal mb-px">{{room.name}}
+                        {% user_fav room as user_fav_boolean %}               
+                        {% if user_fav_boolean %}
+                            Added to Favourites
+                        {% else %}    
+                            <a href="{% url 'lists:save_room' room.pk  %}" class="bg-gray-200 w-9 py-2  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
+                            </a>
+                        {% endif %}
+                    </h4>
+                    <div class="flex flex-row my-2">
+                        <span class="text-gray-700 font-light" >{{room.city}},&nbsp;</span>
+                        <span class="text-gray-700  my-auto text-sm font-semibold" >{{room.country.name}}</span>
+                    </div>
                 </div>
                 <div>
-                <a href="{{room.host.get_absolute_url}}">
+                <a class="-mr-72" href="{{room.host.get_absolute_url}}">
                     {% if user_obj.avatar %}
-                        <div class="h-12 w-12 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
+                    <div class="h-12 w-12 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
                     {% else %}
                         <div class="h-12 w-12  ml-4 bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
                             <span>{{room.host.first_name|first}}</span>
                             {% endif %}
                         </div>        
                         <span class="w-full font-extralight mt-3 text-center text-sm text-black">{{room.host.first_name}}&nbsp;{{room.host.last_name}}</span>
-                
                 </a>
                 </div>
             </div>
@@ -94,14 +104,13 @@
                 </div>
             </div>
         </div>
-        <div class="w-1/5 ml-24">
+        <div class="w-1/6 ml-96">
             
             {% if room.host == user %}
                 <a href="{% url 'rooms:edit' room.pk %}" class="text-center  px-8 py-3 rounded-lg font-light text-lg w-full text-white bg-red-400 hover:bg-red-500 block">Edit Room</a>
             {% else %}
                 
-                {% if not request.session.is_hosting %}
-                    
+                {% if not request.session.is_hosting %}   
                     {% for calendar  in room.get_calendars %}
                     <div class="-ml-24 mb-16 text-sm  font-extralight">
                         <span class="text-center font-medium text-base mb-4 block">{{calendar.get_month}} {{calendar.year}}</span>
