@@ -17,13 +17,13 @@
     </div>     
     
     <div class="container mx-auto flex justify-around pb-56" >
-        <div class="w-1/2" >
+        <div class="w-1/2">
             <div class="flex justify-between">
                 <div class="mb-5">
                     <h4 class="text-xl font-normal mb-px">{{room.name}}
                         {% user_fav room as user_fav_boolean %}               
                         {% if user_fav_boolean %}
-                            Added to Favourites
+                            <span class="bg-gray-200 w-9 py-2 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm" >Added to Favourites</span>
                         {% else %}    
                             <a href="{% url 'lists:save_room' room.pk  %}" class="bg-gray-200 w-9 py-2  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
                             </a>
