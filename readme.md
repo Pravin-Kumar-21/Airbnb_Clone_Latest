@@ -1,7 +1,7 @@
 <h3>Full Stack Airbnb Clone [A Hotel Booking Website]</h3>
 <h4>Full-Stack Airbnb Clone</h4><br>
 &nbsp;&nbsp;&nbsp;&nbsp;<em>A meticulously crafted web application that combines the power of
-<strong>HTML, CSS, Django, Python, and Tailwind CSS<strong> to bring you an immersive online accommodation
+<strong>HTML, CSS, Django, Python, and Tailwind CSS</strong> to bring you an immersive online accommodation
 booking experience. Some key features are listed below</em>
 <h4><em>User-Friendly Interface</h4></em>: Our website oﬀers an intuitive and visually appealing user interface
 that ensures a smooth navigation experience for both hosts and guests.
