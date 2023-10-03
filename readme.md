@@ -24,6 +24,7 @@ desktops to tablets and smartphones, ensuring a consistent and enjoyable experie
 users.
 <h4><em>Admin Panel</h4></em>: The admin panel allows administrators to manage user accounts, listings, and
 maintain the overall integrity of the platform
+
 ![alt text](https://github.com/Pravin-Kumar-21/Airbnb_Clone_Latest/blob/master/Live%20Pictures/1.png)
 <br>
 <br>
