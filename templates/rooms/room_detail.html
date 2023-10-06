@@ -21,12 +21,15 @@
             <div class="flex justify-between">
                 <div class="mb-5">
                     <h4 class="text-xl font-normal mb-px">{{room.name}}
-                        {% user_fav room as user_fav_boolean %}               
-                        {% if user_fav_boolean %}
-                            <span class="bg-gray-200 w-9 py-2 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm" >Added to Favourites</span>
-                        {% else %}    
-                            <a href="{% url 'lists:save_room' room.pk  %}" class="bg-gray-200 w-9 py-2  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
-                            </a>
+                        
+                        {% if user.is_authenticated %}
+                            {% user_fav room as user_fav_boolean %}               
+                            {% if user_fav_boolean %}
+                                <span class="bg-gray-200 w-9 py-2 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm" >Added to Favourites</span>
+                            {% else %}    
+                                <a href="{% url 'lists:save_room' room.pk  %}" class="bg-gray-200 w-9 py-2  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
+                                </a>
+                            {% endif %}
                         {% endif %}
                     </h4>
                     <div class="flex flex-row my-2">
@@ -109,42 +112,45 @@
             {% if room.host == user %}
                 <a href="{% url 'rooms:edit' room.pk %}" class="text-center  px-8 py-3 rounded-lg font-light text-lg w-full text-white bg-red-400 hover:bg-red-500 block">Edit Room</a>
             {% else %}
-                
-                {% if not request.session.is_hosting %}   
-                    {% for calendar  in room.get_calendars %}
+            
+            {% if not request.session.is_hosting %}   
+            {% for calendar  in room.get_calendars %}
                     <div class="-ml-24 mb-16 text-sm  font-extralight">
                         <span class="text-center font-medium text-base mb-4 block">{{calendar.get_month}} {{calendar.year}}</span>
                         <div class="grid grid-cols-7 gap-10 justify-items-center mb-4">
                             {% for day in calendar.day_names %}
                                 <span>{{day}}</span>
-                            {% endfor %}
-                        </div>
+                                {% endfor %}
+                            </div>
                         <div class="grid grid-cols-7 gap-10 justify-items-center">
                             
                             {% for day  in calendar.get_days %}
-                            {% is_booked room day as is_booked_bool %}
-                            {% if day.number != 0  %}
-                                    {% if day.past %}
+                                {% is_booked room day as is_booked_bool %}
+                                {% if day.number != 0  %}
+                                        {% if day.past %}
                                         <span class="bg-gray-50 w-9 py-2 hover:bg-green-300 rounded-sm shadow-sm text-center ">{{day}}</span>
-                                        {% elif is_booked_bool %}
-                                            <span class="bg-gray-50 py-2 w-9 hover:bg-green-300  rounded-sm shadow-md text-center line-through ">{{day}}</span>
-                                    {% else %}
-                                        <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}" class="bg-gray-200 w-9 py-2 hover:bg-green-300 rounded-sm shadow-md text-center">{{day}}</a>
-                                    {% endif %}
-                            {% else %}
+                                            {% elif is_booked_bool %}
+                                                <span class="bg-gray-50 py-2 w-9 hover:bg-green-300  rounded-sm shadow-md text-center line-through ">{{day}}</span>
+                                        {% else %}
+                                        
+                                            {% if user.is_authenticated %}
+                                                <a href="{% url 'reservations:create' room.pk day.year day.month day.number %}" class="bg-gray-200 w-9 py-2 hover:bg-green-300 rounded-sm shadow-md text-center">{{day}}</a>
+                                            {% else %}
+                                                <a href="{% url 'core:vialogin' %}" class="bg-gray-200 w-9 py-2 hover:bg-green-300 rounded-sm shadow-md text-center">{{day}}</a>                     
+                                            {% endif %}
+                                            
+                                        {% endif %}
+                                {% else %}
                                 <span></span>
                             {% endif %}    
                             {% endfor %}
-                                
+                                    
                         </div>
                     </div>
                     {% endfor %}
-                           
-                {% endif %}
-                    
-
             {% endif %}
-                
+    {% endif %}
+            
         </div>
     </div>
 {% endblock  %}
