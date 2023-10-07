@@ -9,31 +9,25 @@
 
 {% block content %}
      
-    <div class="container mx-auto my-10 mt-32 flex justify-between min-h-50vh">
+    <div class="container mx-auto my-10 mt-32 flex justify-between min-h-fit ">
 
         <div class="border w-1/4 p-10">
             <span class="text-center w-full block text-lg font-medium">Conversation between:</span>
-            <div class="flex justify-between mt-10 items-center">
+            <div class="flex flex-row justify-between mt-10 items-center">
                 {% for user in conversation.participants.all  %}
-                    <div class="flex flex-col items-center">
-                    <a href="{{conversation.room.host.get_absolute_url}}">
-                        {% if user_obj.avatar %}
-                            <div class="h-12 w-12 mb-2 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
-                        {% else %}
-                            <div class="h-12 w-12 mb-2  bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
-                                <span>{{conversation.room.host.first_name|first}}</span>
-                        {% endif %}
-                            </div>        
-                            <span class="w-full font-extralight mt-6 -ml-2  text-center text-sm text-black">{{conversation.room.host.first_name}}&nbsp;{{conversation.room.host.last_name}}</span>
-                    </a>
-                        <span class="mt-2 text-gray-500">{{user.first_name}}</span>
+                <a href="{{user.get_absolute_url}}">
+                {% if user.avatar %}
+                    <div class="h-16 w-16 mb-2 bg-cover rounded-full pl-4" style="background-image: url({{user.avatar.url}});"></div>
+                {% else %}
+                    <div class="h-16 w-16 mb-2  bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
+                        <span>{{user.first_name|first}}</span>
                     </div>
-                    {% if forloop.first %}
-                      <span class="font-medium text-2xl">&</span>
-                    {% endif %}
+                {% endif %}
+                    <span>{{user.first_name}}&nbsp;{{user.last_name}}</span>
                 {% endfor %}
+            </div>        
+                </a>
             </div>
-        </div>
         <div class="flex-grow">
         <div class="border  ml-10 p-10 flex flex-col">
                 {% if conversation.messages.count == 0 %}
