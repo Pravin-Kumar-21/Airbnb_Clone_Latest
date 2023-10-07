@@ -28,6 +28,7 @@ urlpatterns = [
     path("reservations/", include("reservations.urls", namespace="reservations")),
     path("lists/", include("lists.urls", namespace="lists")),
     path("reviews/", include("reviews.urls", namespace="reviews")),
+    path("conversations/", include("conversations.urls", namespace="conversations")),
     path("admin/", admin.site.urls),
 ]
 

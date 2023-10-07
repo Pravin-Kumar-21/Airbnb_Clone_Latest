@@ -36,7 +36,7 @@
                         </a>
                                 <div class="my-4 -ml-4  flex flex-row">
                                     <span class="text-gray-500 mb-2 text-base mr-4 font-light">Contact Your Host: </span>
-                                    <a href="#" class="block mb-3 -mt-2 -pt-1  pb-3 text-center w-36 bg-green-50 rounded-lg font-light text-sm  text-green-400">Send a Message<i class="fa-solid fa-message ml-2 mt-3"></i></a>
+                                    <a href="{% url 'conversations:go' reservation.room.host.pk reservation.guest.pk  %}" class="block mb-3 -mt-2 -pt-1  pb-3 text-center w-36 bg-green-50 rounded-lg font-light text-sm  text-green-400">Send a Message<i class="fa-solid fa-message ml-2 mt-3"></i></a>
                                 </div>
                     </div>
                 </div>
