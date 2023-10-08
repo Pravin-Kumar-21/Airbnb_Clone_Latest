@@ -18,11 +18,7 @@ def go_conversation(request, a_pk, b_pk):
         except models.Conversation.DoesNotExist:
             conversation = models.Conversation.objects.create()
             conversation.participants.add(user_one, user_two)
-        return render(
-            request,
-            "conversation_detail.html",  # Replace with your actual template name
-            {"user_one": user_one, "user_two": user_two},
-        )
+        return redirect(reverse("conversations:detail", kwargs={"pk": conversation.pk}))
 
 
 class ConversationDetailView(DetailView):

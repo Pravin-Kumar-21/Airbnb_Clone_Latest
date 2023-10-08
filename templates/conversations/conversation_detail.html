@@ -1,8 +1,8 @@
 {% extends "base.html" %}
 
-{% block page_title %}
+{% block page_name %}
     Conversation
-{% endblock page_title %}
+{% endblock page_name %}
 
 {% block search-bar %}
 {% endblock search-bar %}
@@ -12,18 +12,18 @@
     <div class="container mx-auto my-10 mt-32 flex justify-between min-h-fit ">
 
         <div class="border w-1/4 p-10">
-            <span class="text-center w-full block text-lg font-medium">Conversation between:</span>
-            <div class="flex flex-row justify-between mt-10 items-center">
+            <i class="fa-solid fa-comments font-medium text-2xl ml-36 "></i>
+            <div class="flex flex-row justify-between items-center">
                 {% for user in conversation.participants.all  %}
                 <a href="{{user.get_absolute_url}}">
                 {% if user.avatar %}
-                    <div class="h-16 w-16 mb-2 bg-cover rounded-full pl-4" style="background-image: url({{user.avatar.url}});"></div>
+                    <div class="h-16 w-16 mb-2 bg-cover rounded-full pl-4 hover:shadow-lg transition-shadow " style="background-image: url({{user.avatar.url}});"></div>
                 {% else %}
                     <div class="h-16 w-16 mb-2  bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
                         <span>{{user.first_name|first}}</span>
                     </div>
                 {% endif %}
-                    <span>{{user.first_name}}&nbsp;{{user.last_name}}</span>
+                    <span class="-ml-2 mt-4 font-light text-sm ">{{user.first_name}}&nbsp;{{user.last_name}}</span>
                 {% endfor %}
             </div>        
                 </a>
