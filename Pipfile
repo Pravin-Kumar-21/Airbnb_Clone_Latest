@@ -18,10 +18,11 @@ google-auth = "*"
 google-auth-oauthlib = "*"
 google-auth-httplib2 = "*"
 django-widget-tweaks = "*"
+setuptools = "*"
 
 [dev-packages]
 flake8 = "*"
 black = "*"
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"

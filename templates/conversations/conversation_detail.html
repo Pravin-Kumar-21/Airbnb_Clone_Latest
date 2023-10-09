@@ -9,10 +9,10 @@
 
 {% block content %}
      
-    <div class="container mx-auto my-10 mt-32 flex justify-between min-h-fit ">
+    <div class="container mx-auto my-10 mt-32 flex justify-between min-h-fit pb-36 ">
 
-        <div class="border w-1/4 p-10">
-            <i class="fa-solid fa-comments font-medium text-2xl ml-36 "></i>
+        <div class=" w-1/4 p-10 border rounded-sm  ">
+            <i class="fa-solid fa-comments font-medium text-2xl ml-36  "></i>
             <div class="flex flex-row justify-between items-center">
                 {% for user in conversation.participants.all  %}
                 <a href="{{user.get_absolute_url}}">
@@ -29,22 +29,25 @@
                 </a>
             </div>
         <div class="flex-grow">
-        <div class="border  ml-10 p-10 flex flex-col">
+        <div class="border  ml-16 p-6 flex flex-col rounded-md">
                 {% if conversation.messages.count == 0 %}
                     no messages
                 {% else %}
                     {% for message in conversation.messages.all  %}
-                        <div class="mb-10 {% if message.user.pk == user.pk %}
+                        <div class="mb-8 {% if message.user.pk == user.pk %}
                             self-end
                             text-right
                         {% endif %}">
                             <span class="text-sm font-medium text-gray-600">{{message.user.first_name}}</span>
-                            <div class="mt-px p-5 w-56 rounded
+                            <div class="mt-px p-5 w-72 text-left rounded
                                 {% if message.user.pk != user.pk %}
-                                    bg-teal-500
-                                    text-white
+                                    bg-yellow-300
+                                    text-sm
+                                    text-black font-light
                                 {% else %}
-                                    bg-gray-300
+                                    bg-green-300
+                                    text-sm
+                                    font-light
                                 {% endif %}
                             ">
                                 {{message.message}}
@@ -54,12 +57,25 @@
                 {% endif %}
                 
             </div>
-            <form class="mt-10 w-1/2 mx-auto" method="POST">
-                {% csrf_token %}
-                <input class="border-box mb-5" name="message" placeholder="Write a Message" required />
-                <button class="btn-link">Send Comment</button>
+            <div class="justify-end flex flex-row">
+                <div>
+                <form class=" mt-10 text-center  w-1/2 " method="POST">
+                    {% csrf_token %}
+                    <input type="text" class="mb-5" name="Message"  placeholder="Write a Message" required >
+                </div>
+                <div>
+                    <button class="text-center py-4  rounded-full font-light text-lg w-36 ml-5 text-white mt-10 bg-green-200 hover:bg-green-400 "><i class="fa-solid fa-paper-plane"></i></button>
+                </div>
+            </div>
+            <style>
+                input[type="text"] {
+                height: 64px;
+                border-radius: 4px;
+                padding-left: 10px;
+                background-color: rgb(240, 241, 242);
+                }
+            </style>
             </form>
         </div>
-
     </div>
 {% endblock content %}
