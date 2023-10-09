@@ -16,7 +16,8 @@
         {% if request.session.is_hosting %}
             <li class="ml-8 border-b-2 border-white hover:border-gray-600 hover:shadow-sm px-2 h-full flex items-center"><a href="{% url 'rooms:create_room' %}"><i class="fa-solid fa-plus py-px"></i>&nbsp;&nbsp;Add Room</a></li>
         {% endif %}
-               
+        
+        <li class="ml-8 border-b-2 border-white hover:border-gray-600 hover:shadow-sm px-2 h-full flex items-center"><a href="{% url 'lists:favourites' %}"><i class="fa-solid fa-heart py-px"></i>&nbsp;&nbsp;My Favourites&nbsp;&nbsp;<i class="fa-solid fa-{{user.list.rooms.count}} text-xs font-extralight"></i></a></li>
         <li class="ml-8 border-b-2 border-white hover:border-gray-600 hover:shadow-sm px-2 h-full flex items-center"><a href="{{user.get_absolute_url}}"><i class="fa-solid fa-user py-px"></i>&nbsp;&nbsp;Your Profile</a></li>
         <li class="ml-8 border-b-2 border-white hover:border-gray-600 px-2 h-full flex items-center"><a href="{% url "users:logout" %}">Log Out <i class="fa-solid fa-right-from-bracket "></i></a></li>
     {% else %}

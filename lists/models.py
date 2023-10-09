@@ -1,4 +1,3 @@
-# Create your models here.
 from django.db import models
 from core import models as core_models
 
@@ -7,8 +6,8 @@ class List(core_models.TimeStampedModel):
     """List Model Definition"""
 
     name = models.CharField(max_length=80)
-    user = models.ForeignKey(
-        "users.User", related_name="lists", on_delete=models.CASCADE
+    user = models.OneToOneField(
+        "users.User", related_name="list", on_delete=models.CASCADE
     )
     rooms = models.ManyToManyField("rooms.Room", related_name="list", blank=True)
 
@@ -18,4 +17,4 @@ class List(core_models.TimeStampedModel):
     def count_rooms(self):
         return self.rooms.count()
 
-    count_rooms.short_description = "Number of Rooms "
+    count_rooms.short_description = "Number of Rooms"
