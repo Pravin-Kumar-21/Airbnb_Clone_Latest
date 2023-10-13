@@ -17,39 +17,43 @@
     </div>     
     
     <div class="container mx-auto flex justify-around pb-56" >
-        <div class="w-1/2">
-            <div class="flex justify-between">
+    <div class="w-1/2">
+        <div class="flex flex-row">
+            <div class="flex flex-col">
                 <div class="mb-5">
-                    <h4 class="text-xl font-normal mb-px">{{room.name}}
-                        
-                        {% if user.is_authenticated %}
-                            {% user_fav room as user_fav_boolean %}               
-                            {% if user_fav_boolean %}
-                                <a class="bg-gray-200 w-9 py-2 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm" href="{% url 'lists:toggle_room' room.pk %}?action=remove" >Remove From Favourites</a>
-                            {% else %}    
-                                <a href="{% url 'lists:toggle_room' room.pk  %}?action=add" class="bg-gray-200 w-9 py-2  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
-                                </a>
-                            {% endif %}
-                        {% endif %}
-                    </h4>
-                    <div class="flex flex-row my-2">
-                        <span class="text-gray-700 font-light" >{{room.city}},&nbsp;</span>
-                        <span class="text-gray-700  my-auto text-sm font-semibold" >{{room.country.name}}</span>
-                    </div>
+                    <h4 class="text-xl font-normal mb-px">{{room.name}}</h4>
                 </div>
-                <div>
-                <a class="-mr-72" href="{{room.host.get_absolute_url}}">
-                    {% if user_obj.avatar %}
-                    <div class="h-12 w-12 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
-                    {% else %}
-                        <div class="h-12 w-12  ml-4 bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
-                            <span>{{room.host.first_name|first}}</span>
-                            {% endif %}
-                        </div>        
-                        <span class="w-full font-extralight mt-3 text-center text-sm text-black">{{room.host.first_name}}&nbsp;{{room.host.last_name}}</span>
-                </a>
+                <div class="flex flex-row my-2">
+                    <span class="text-gray-700 font-light" >{{room.city}},&nbsp;</span>
+                    <span class="text-gray-700  my-auto text-sm font-semibold" >{{room.country.name}}</span>
                 </div>
             </div>
+            <div class="flex flex-row  ml-5">
+                <div class="flex flex-col mb-10 ">        
+                    {% if user.is_authenticated %}
+                        {% user_fav room as user_fav_boolean %}               
+                        {% if user_fav_boolean %}
+                            <a class="bg-gray-200 w-44 py-2 rounded-md px-2 font-light hover:shadow-md text-center  text-sm" href="{% url 'lists:toggle_room' room.pk %}?action=remove" >Remove From Favourites</a>
+                        {% else %}    
+                            <a href="{% url 'lists:toggle_room' room.pk  %}?action=add" class="bg-gray-200 w-44 py-2 text-center  hover:bg-yellow-300 rounded-md px-2 font-light hover:shadow-md mx-4 text-sm">Add To Favourites
+                            </a>
+                        {% endif %}
+                    {% endif %}
+                </div>
+                <div class="ml-10">
+                    <a class="" href="{{room.host.get_absolute_url}}">
+                        {% if user_obj.avatar %}
+                        <div class="h-12 w-12 bg-cover rounded-full pl-4" style="background-image: url({{user_obj.avatar.url}});"></div>
+                        {% else %}
+                            <div class="h-12 w-12  ml-4 bg-gray-600 rounded-full text-white flex justify-center items-center text-2xl">
+                                <span>{{room.host.first_name|first}}</span>
+                                {% endif %}
+                            </div>        
+                            <span class="w-full font-extralight mt-3 text-center text-sm text-black">{{room.host.first_name}}&nbsp;{{room.host.last_name}}</span>
+                    </a>
+                </div>
+            </div>
+        </div>
             <div class="flex mt-8 pb-5 border-b border-gray-300 text-base ">
                 <span class="mr-5 font-light">{{room.room_type}}</span>
                 <span class="mr-5 font-light">{{room.beds}} Bed{{room.beds|pluralize}}</span>
@@ -149,7 +153,7 @@
                     </div>
                     {% endfor %}
             {% endif %}
-    {% endif %}
+        {% endif %}
             
         </div>
     </div>
