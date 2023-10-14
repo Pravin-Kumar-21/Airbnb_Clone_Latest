@@ -1,0 +1,22 @@
+################################################################################
+# This requirements file has been automatically generated from `Pipfile` with
+# `pipenv-to-requirements`
+#
+#
+# This has been done to maintain backward compatibility with tools and services
+# that do not support `Pipfile` yet.
+#
+# Do NOT edit it directly, use `pipenv install [-d]` to modify `Pipfile` and
+# `Pipfile.lock` and then regenerate `requirements*.txt`.
+################################################################################
+
+black==23.9.1
+click==8.1.7 ; python_version >= '3.7'
+flake8==6.1.0
+mccabe==0.7.0 ; python_version >= '3.6'
+mypy-extensions==1.0.0 ; python_version >= '3.5'
+packaging==23.2 ; python_version >= '3.7'
+pathspec==0.11.2 ; python_version >= '3.7'
+platformdirs==3.11.0 ; python_version >= '3.7'
+pycodestyle==2.11.1 ; python_version >= '3.8'
+pyflakes==3.1.0 ; python_version >= '3.8'
