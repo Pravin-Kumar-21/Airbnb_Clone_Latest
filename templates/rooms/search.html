@@ -1,24 +1,123 @@
 {% extends "base.html" %}
-
 {% block page_name %}
     Search
 {% endblock page_name %}
-
 {% block search-bar %}
 {% endblock search-bar %}
-
 {% block content %}
-    
-    <h2>Search ! </h2>
-    
-    <form method="get" action="{% url "rooms:search" %}" >
-        {{form.as_p}}
-        <button>Search</button>
-    </form>
-    <h3>Results</h3>
-
-    {% for room in rooms %}
-            {% include 'Partials/room_card.html' with room=room %}
-    {% endfor %}
-    
-{% endblock content %} 
+    <div class="container max-w-full mx-auto my-10 flex flex-col items-center border-transparent p-6 border-gray-400">
+        <h2 class=" text-center text-2xl mx-auto my-auto bg-gray-200 rounded-md  w-1/4 py-3 px-2">Search</h2>
+        <div class="mt-20 mb-10 ">
+            <form method="get" action="{% url  'rooms:search' %}">
+                <form method="get"
+                      action="{% url 'rooms:search' %}"
+                      class="flex flex-col items-center">
+                    <div class="mb-4">
+                        <label for="city" class="block text-gray-700 text-sm font-bold mb-2">City:</label>
+                        <input type="text"
+                               name="city"
+                               id="city"
+                               placeholder="Enter city"
+                               value="{{ form.city.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="country" class="block text-gray-700 text-sm font-bold mb-2">Country:</label>
+                        <select name="country"
+                                id="country"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="" disabled selected>Select country</option>
+                            {% for code, name in form.fields.country.choices %}
+                                {% if form.country.value == code %}
+                                    <option value="{{ code }}" selected>{{ name }}</option>
+                                {% else %}
+                                    <option value="{{ code }}">{{ name }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="price" class="block text-gray-700 text-sm font-bold mb-2">Price:</label>
+                        <input type="number"
+                               name="price"
+                               id="price"
+                               placeholder="Enter price"
+                               value="{{ form.price.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="room_type" class="block text-gray-700 text-sm font-bold mb-2">Room Type:</label>
+                        <select name="room_type"
+                                id="room_type"
+                                class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                            <option value="" disabled selected>Select room type</option>
+                            {% for room_type_choice in form.room_type.field.choices %}
+                                {% if form.room_type.value == room_type_choice.0 %}
+                                    <option value="{{ room_type_choice.0 }}" selected>{{ room_type_choice.1 }}</option>
+                                {% else %}
+                                    <option value="{{ room_type_choice.0 }}">{{ room_type_choice.1 }}</option>
+                                {% endif %}
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div class="mb-4">
+                        <label for="guest" class="block text-gray-700 text-sm font-bold mb-2">Guest:</label>
+                        <input type="number"
+                               name="guest"
+                               id="guest"
+                               placeholder="Enter number of guests"
+                               value="{{ form.guest.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="bedrooms" class="block text-gray-700 text-sm font-bold mb-2">Bedrooms:</label>
+                        <input type="number"
+                               name="bedrooms"
+                               id="bedrooms"
+                               placeholder="Enter number of bedrooms"
+                               value="{{ form.bedrooms.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="beds" class="block text-gray-700 text-sm font-bold mb-2">Beds:</label>
+                        <input type="number"
+                               name="beds"
+                               id="beds"
+                               placeholder="Enter number of beds"
+                               value="{{ form.beds.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="baths" class="block text-gray-700 text-sm font-bold mb-2">Baths:</label>
+                        <input type="number"
+                               name="baths"
+                               id="baths"
+                               placeholder="Enter number of baths"
+                               value="{{ form.baths.value }}"
+                               class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="instant_book" class="block text-gray-700 text-sm font-bold mb-2">Instant Book:</label>
+                        <input type="checkbox"
+                               name="instant_book"
+                               id="instant_book"
+                               {% if form.instant_book.value %}checked{% endif %}
+                               class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <div class="mb-4">
+                        <label for="superhost" class="block text-gray-700 text-sm font-bold mb-2">Superhost:</label>
+                        <input type="checkbox"
+                               name="superhost"
+                               id="superhost"
+                               value={{forms.superhost.value}}
+                               class="shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+                    </div>
+                    <button>Search</button>
+                </form>
+            </div>
+            <h3>Results</h3>
+            {% for room in rooms %}
+                {% include 'Partials/room_card.html' with room=room %}
+            {% endfor %}
+        </div>
+    {% endblock content %}

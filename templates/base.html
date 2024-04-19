@@ -4,31 +4,42 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://kit.fontawesome.com/ca547ebe4a.js" crossorigin="anonymous"></script>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
+    <script src="https://kit.fontawesome.com/ca547ebe4a.js"
+            crossorigin="anonymous"></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css"
+          rel="stylesheet" />
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'css/styles.css' %}">
-
-    <title>{% block page_name %}{% endblock page_name %} | Airbnb</title>
+    <title>
+      {% block page_name %}
+      {% endblock page_name %}
+    | Airbnb</title>
   </head>
-  <body class="text-gray-800 mt-24"> 
-    <header class="container max-w-full inset-0 flex items-center justify-between px-6 h-20 border-b border-gray-300 fixed bg-white " >
+  <body class="text-gray-800 mt-24">
+    <header class="container max-w-full inset-0 flex items-center justify-between px-6 h-20 border-b border-gray-300 fixed bg-white ">
       <div class="flex flex-row ">
         <div class="container w-40 -ml-4 mb-20 py-8 h-10 rounded-md ">
-        <a href ="{% url "core:home" %}" class="mr-6">
-          <div class="bg-cover max-w-full bg-center pt-16" style="background-image: url(/static/img/logo2.png); width: 100%; height: 100%;"></div>
-        </div>
-          </a>
+          <a href ="{% url "core:home" %}" class="mr-6">
+            <div class="bg-cover max-w-full bg-center pt-16"
+                 style="background-image: url(/static/img/logo2.png);
+                        width: 100%;
+                        height: 100%"></div>
+          </div>
+        </a>
         {% block search-bar %}
-        <form method="get" action="{% url "rooms:search" %}" class="search-box w-9/12 pt-9" >
-          <input class="search-box shadow-md hover:shadow-xl  border pt-4  float-left mt-2  px-8 text-sm font-light  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 " name="city" placeholder="Search by City"/>
-        </form>
+          <form method="get"
+                action="{% url "rooms:search" %}"
+                class="search-box w-9/12 pt-9">
+            <input class="search-box shadow-md hover:shadow-xl  border pt-4  float-left mt-2  px-8 text-sm font-light  focus:outline-none placeholder-gray-500 py-3 rounded-md w-80 "
+                   name="city"
+                   placeholder="Search by City" />
+          </form>
         {% endblock search-bar %}
       </div>
       {% include "Partials/nav.html" %}
     </header>
     {% block content %}{% endblock %}
     {% include 'Partials/messages.html' %}
-    {%include "Partials/footer.html" %}
+    {% include "Partials/footer.html" %}
   </body>
 </html>
